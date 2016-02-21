@@ -19,6 +19,7 @@ defmodule Scripture.Router do
     get "/", PageController, :index
 
     resources "/articles", ArticleController
+    get "/hello", HelloController, :index
   end
 
   # Other scopes may use custom stacks.

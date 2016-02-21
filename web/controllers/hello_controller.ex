@@ -1,4 +1,4 @@
-defmodule Scripture.PageController do
+defmodule Scripture.HelloController do
   use Scripture.Web, :controller
 
   def index(conn, _params) do
