@@ -5,7 +5,11 @@ defmodule Scripture.HelloController do
     render conn, :index
   end
 
-  def show(conn, %{"messenger" => messenger}) do
-    render conn, :show, messenger: messenger
+  def show(conn, params = %{"messenger" => messenger}) do
+    conn
+    |> put_flash(:info, params["info"])
+    |> put_flash(:error, "fake error!")
+    |> put_flash(:success, "fake success!")
+    |> render(:show, messenger: messenger)
   end
 end
