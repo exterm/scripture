@@ -10,7 +10,11 @@ defmodule Scripture.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
-     deps: deps]
+     deps: deps,
+     dialyzer: [flags: ["-Wunmatched_returns", "-Wrace_conditions",
+                        "-Werror_handling"],
+                plt_add_deps: true,
+                plt_file: "scripture.plt"]]
   end
 
   # Configuration for the OTP application.
@@ -36,7 +40,8 @@ defmodule Scripture.Mixfile do
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:dialyxir, "~> 0.3", only: [:dev]}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
