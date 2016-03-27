@@ -15,7 +15,8 @@ config :scripture, Scripture.Endpoint,
   http: [port: 4800],
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/manifest.json",
-  server: true
+  server: true,
+  root: "."
 
 # Do not print debug messages in production
 config :logger, level: :info
