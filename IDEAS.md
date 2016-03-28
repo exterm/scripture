@@ -8,3 +8,4 @@
 - emails with https://github.com/swoosh/swoosh
 - render app version into HTML
 - render elixir, erlang versions into HTML (only for logged in admins)
+- use apache mod_h2 (now called mod_http2) for http 2.0
