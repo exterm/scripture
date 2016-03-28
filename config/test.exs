@@ -17,3 +17,5 @@ config :scripture, Scripture.Repo,
   database: "scripture_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :rollbax, enabled: false

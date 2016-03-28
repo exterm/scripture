@@ -1,5 +1,6 @@
 defmodule Scripture.Router do
   use Scripture.Web, :router
+  use Plug.ErrorHandler
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -25,4 +26,11 @@ defmodule Scripture.Router do
   # scope "/api", Scripture do
   #   pipe_through :api
   # end
+
+
+  # don't report routing errors
+  defp handle_errors(conn, %{reason: %Phoenix.Router.NoRouteError{}}), do: nil
+  defp handle_errors(_conn, %{kind: _kind, reason: exception, stack: stacktrace}) do
+    Rollbax.report(exception, stacktrace)
+  end
 end
