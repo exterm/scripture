@@ -27,3 +27,7 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :rollbax,
+  access_token: "75e197f9b08c4262a1ca766ff9821da6",
+  environment: Mix.env

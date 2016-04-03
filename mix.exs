@@ -23,7 +23,7 @@ defmodule Scripture.Mixfile do
   def application do
     [mod: {Scripture, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :edeliver]]
+                    :phoenix_ecto, :postgrex, :edeliver, :rollbax]]
   end
 
   # Specifies which paths to compile per environment.
@@ -42,7 +42,8 @@ defmodule Scripture.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:dialyxir, "~> 0.3", only: [:dev]}, # type checks
-     {:edeliver, "> 0.0.0"}] # deployment
+     {:edeliver, "> 0.0.0"}, # deployment
+     {:rollbax, "~> 0.5.4"}] # rollbar error reporting
   end
 
   # Aliases are shortcut or tasks specific to the current project.
