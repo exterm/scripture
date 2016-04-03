@@ -1,11 +1,12 @@
 defmodule Scripture.ExceptionReporter do
   def rollbar_standard_metadata(conn) do
+    headers_map = Enum.into(conn.req_headers, %{})
     %{
       framework: "phoenix",
       request: %{
-        url: build_url(conn),
+        url: build_url(conn, headers_map),
         method: conn.method,
-        headers: Enum.into(conn.req_headers, %{}),
+        headers: headers_map,
         query_string: conn.query_string
       }
       # person: %{
@@ -24,9 +25,15 @@ defmodule Scripture.ExceptionReporter do
     }
   end
 
-  defp build_url(conn) do
+  defp build_url(conn, headers_map) do
     query_string = if String.length(conn.query_string) > 0, do: "?#{conn.query_string}"
-    port_string = if conn.port, do: ":#{conn.port}"
-    "#{conn.scheme}://#{conn.host}#{port_string}#{conn.request_path}#{query_string}"
+    port_string  = if conn.port, do: ":#{conn.port}"
+
+    host_string  = if(headers_map[:"x-forwarded-host"],
+                      do: headers_map[:"x-forwarded-host"],
+                      else: conn.host <> port_string)
+
+
+    "#{conn.scheme}://#{host_string}#{conn.request_path}#{query_string}"
   end
 end
