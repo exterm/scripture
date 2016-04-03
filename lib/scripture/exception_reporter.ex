@@ -30,8 +30,8 @@ defmodule Scripture.ExceptionReporter do
     query_string = if String.length(conn.query_string) > 0, do: "?#{conn.query_string}"
     port_string  = if conn.port, do: ":#{conn.port}"
 
-    host_string  = if(headers_map[:"x-forwarded-host"],
-                      do: headers_map[:"x-forwarded-host"],
+    host_string  = if(headers_map["x-forwarded-host"],
+                      do: headers_map["x-forwarded-host"],
                       else: conn.host <> port_string)
 
 
