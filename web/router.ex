@@ -30,7 +30,10 @@ defmodule Scripture.Router do
 
   # don't report routing errors
   defp handle_errors(conn, %{reason: %Phoenix.Router.NoRouteError{}}), do: nil
-  defp handle_errors(_conn, %{kind: _kind, reason: exception, stack: stacktrace}) do
-    Rollbax.report(exception, stacktrace)
+  # report all other errors
+  defp handle_errors(conn, %{kind: _kind, reason: exception, stack: stacktrace}) do
+    rollbar_standard_metadata = Scripture.ExceptionReporter.rollbar_standard_metadata(conn)
+    custom_data = %{}
+    Rollbax.report(exception, stacktrace, custom_data, rollbar_standard_metadata)
   end
 end
