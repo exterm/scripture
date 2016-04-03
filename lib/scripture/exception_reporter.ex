@@ -1,6 +1,7 @@
 defmodule Scripture.ExceptionReporter do
   def rollbar_standard_metadata(conn) do
-    headers_map = Enum.into(conn.req_headers, %{})
+    headers_map = Map.new(conn.req_headers)
+                  |> Map.delete("x-forwarded-for")
     %{
       framework: "phoenix",
       request: %{
