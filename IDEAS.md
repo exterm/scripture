@@ -1,5 +1,9 @@
 # IDEAS
 
+- users: https://github.com/zmoshansky/aeacusxc
+- roles: https://github.com/vysakh0/exbouncer
+- let admins create articles, users read them
+
 - make travis use dialyzer
 - ignore dialyzer warnings from libraries
 
