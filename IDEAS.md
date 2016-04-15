@@ -1,6 +1,6 @@
 # IDEAS
 
-- users: https://github.com/zmoshansky/aeacusxc
+- users: https://github.com/zmoshansky/aeacus
 - roles: https://github.com/vysakh0/exbouncer
 - let admins create articles, users read them
 
