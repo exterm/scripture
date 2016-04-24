@@ -16,4 +16,4 @@
 - use another templating language, like DTL or HAML
 - arc for file uploads https://github.com/stavro/arc
 - credo for code smell detection https://github.com/rrrene/credo
-- emails with https://github.com/swoosh/swoosh
+- emails with https://github.com/swoosh/swoosh or https://github.com/thoughtbot/bamboo
