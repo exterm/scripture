@@ -1,6 +1,8 @@
 %{"bbmustache": {:hex, :bbmustache, "1.0.4", "7ba94f971c5afd7b6617918a4bb74705e36cab36eb84b19b6a1b7ee06427aa38", [:rebar], []},
   "certifi": {:hex, :certifi, "0.4.0", "a7966efb868b179023618d29a407548f70c52466bf1849b9e8ebd0e34b7ea11f", [:rebar3], []},
   "cf": {:hex, :cf, "0.2.1", "69d0b1349fd4d7d4dc55b7f407d29d7a840bf9a1ef5af529f1ebe0ce153fc2ab", [:rebar3], []},
+  "comeonin": {:hex, :comeonin, "2.4.0", "2dc7526b6352f7cf03de79c1e19b5154ac021da48b0c1790a12841ef5ca00340", [:mix, :make, :make], []},
+  "comeonin_ecto_password": {:hex, :comeonin_ecto_password, "0.0.3", "83fc5fe8a275756ba9db9b1e88a1a9f20573262a429cb82fcd27d6223a638a50", [:mix], [{:ecto, "~> 1.1.2", [hex: :ecto, optional: false]}, {:comeonin, "~> 2.0", [hex: :comeonin, optional: false]}]},
   "connection": {:hex, :connection, "1.0.2", "f4a06dd3ecae4141aa66f94ce92ea4c4b8753069472814932f1cadbc3078ab80", [:mix], []},
   "cowboy": {:hex, :cowboy, "1.0.4", "a324a8df9f2316c833a470d918aaf73ae894278b8aa6226ce7a9bf699388f878", [:rebar, :make], [{:cowlib, "~> 1.0.0", [hex: :cowlib, optional: false]}, {:ranch, "~> 1.0", [hex: :ranch, optional: false]}]},
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [:make], []},
