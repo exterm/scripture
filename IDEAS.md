@@ -3,6 +3,7 @@
 - feature testing with wallaby
 http://blog.carbonfive.com/2016/04/16/introducing-wallaby-concurrent-feature-tests-for-elixir-and-phoenix/
 
+- Password less login: einfach login link schicken, cookie mit langer Laufzeit setzen (da sollte wohl noch eine checkbox sein, um sessioncookie von ewigem cookie zu unterscheiden)
 - users: https://github.com/zmoshansky/aeacus
 - roles: https://github.com/vysakh0/exbouncer
 - let admins create articles, users read them
