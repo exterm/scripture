@@ -19,3 +19,6 @@ config :scripture, Scripture.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :rollbax, enabled: false
+
+config :comeonin,
+  pbkdf2_rounds: 2

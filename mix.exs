@@ -22,7 +22,7 @@ defmodule Scripture.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Scripture, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
+     applications: [:comeonin, :phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :edeliver, :rollbax]]
   end
 
@@ -43,7 +43,8 @@ defmodule Scripture.Mixfile do
      {:cowboy, "~> 1.0"},
      {:dialyxir, "~> 0.3", only: [:dev]}, # type checks
      {:edeliver, "> 0.0.0"}, # deployment
-     {:rollbax, "~> 0.5.4"}] # rollbar error reporting
+     {:rollbax, "~> 0.5.4"}, # rollbar error reporting
+     {:comeonin_ecto_password, "~> 0.0.3"}] # authentication
   end
 
   # Aliases are shortcut or tasks specific to the current project.

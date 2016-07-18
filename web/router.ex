@@ -20,6 +20,9 @@ defmodule Scripture.Router do
     get "/", PageController, :index
 
     resources "/articles", ArticleController
+
+    get "/signup", UserController, :new
+    post "/users", UserController, :create
   end
 
   # Other scopes may use custom stacks.
