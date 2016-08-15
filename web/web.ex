@@ -22,7 +22,7 @@ defmodule Scripture.Web do
 
       import Ecto
       import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
     end
   end
 
@@ -32,7 +32,7 @@ defmodule Scripture.Web do
 
       alias Scripture.Repo
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
 
       import Scripture.Router.Helpers
       import Scripture.Gettext
@@ -67,7 +67,7 @@ defmodule Scripture.Web do
 
       alias Scripture.Repo
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
       import Scripture.Gettext
     end
   end

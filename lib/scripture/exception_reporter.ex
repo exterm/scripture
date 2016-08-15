@@ -3,7 +3,7 @@ defmodule Scripture.ExceptionReporter do
     headers_map = Map.new(conn.req_headers)
                   |> Map.delete("x-forwarded-for")
     %{
-      framework: "phoenix",
+      framework: "phoenix " <> phoenix_version,
       request: %{
         url: build_url(conn, headers_map),
         method: conn.method,
@@ -36,5 +36,11 @@ defmodule Scripture.ExceptionReporter do
 
 
     "#{conn.scheme}://#{host_string}#{conn.request_path}#{query_string}"
+  end
+
+  defp phoenix_version do
+    loaded_applications = :application.loaded_applications()
+    phoenix_tuple = List.keyfind(loaded_applications, :phoenix, 0)
+    to_string(elem(phoenix_tuple, 2))
   end
 end

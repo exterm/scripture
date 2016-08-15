@@ -2,7 +2,7 @@ defmodule Scripture.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Scripture.RoomChannel
+  # channel "room:*", Scripture.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

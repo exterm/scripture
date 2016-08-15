@@ -5,20 +5,15 @@ defmodule Scripture.Article do
     field :title, :string
     field :content, :string
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(title content)
-  @optional_fields ~w()
-
   @doc """
-  Creates a changeset based on the `model` and `params`.
-
-  If no params are provided, an invalid changeset is returned
-  with no validation performed.
+  Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(model, params \\ :empty) do
-    model
-    |> cast(params, @required_fields, @optional_fields)
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:title, :content])
+    |> validate_required([:title, :content])
   end
 end
