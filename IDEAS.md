@@ -9,6 +9,9 @@ http://blog.carbonfive.com/2016/04/16/introducing-wallaby-concurrent-feature-tes
 - roles: https://github.com/vysakh0/exbouncer
 - let admins create articles, users read them
 
+- code style testing with dogma or credo
+  - https://github.com/lpil/dogma
+  - https://elixirnation.io/libraries/credo-static-code-analysis-for-elixir-language
 - make travis use dialyzer
 - ignore dialyzer warnings from libraries
 
