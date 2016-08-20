@@ -39,7 +39,10 @@ defmodule Scripture.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:rollbax, "~> 0.6"},
-     {:wallaby, "~> 0.11.0"}]
+     {:wallaby, "~> 0.11.0"},
+     {:edeliver, "~> 1.4.0"},
+     {:distillery, ">= 0.8.0", warn_missing: false} # as per edeliver docs
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
