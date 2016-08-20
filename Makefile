@@ -5,7 +5,7 @@ plt:
 	dialyzer --add_to_plt --plt scripture.plt --output_plt scripture.plt _build/dev/lib/plug/ebin _build/dev/lib/ecto/ebin
 
 hard_deploy:
-	mix edeliver build release --branch=master \
+	mix edeliver build release --branch=scripture-new \
 	&& mix edeliver deploy release to production \
 	&& mix edeliver restart production
 
