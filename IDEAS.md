@@ -1,5 +1,7 @@
 # IDEAS
 
+- hot code upgrade on deploy (possible with already integrated edeliver)
+
 - Password less login: einfach login link schicken, cookie mit langer Laufzeit setzen (da sollte wohl noch eine checkbox sein, um sessioncookie von ewigem cookie zu unterscheiden)
   - http://inaka.net/blog/2016/07/27/passwordless-login-with-phoenix
 - users: https://github.com/zmoshansky/aeacus
@@ -9,6 +11,7 @@
 - code style testing with dogma or credo
   - https://github.com/lpil/dogma
   - https://elixirnation.io/libraries/credo-static-code-analysis-for-elixir-language
+
 - make travis use dialyzer
 - ignore dialyzer warnings from libraries
 
@@ -16,7 +19,6 @@
 - render elixir, erlang versions into HTML (only for logged in admins)
 
 - use apache mod_h2 (now called mod_http2) for http 2.0
-- hot code upgrade on deploy (possible with already integrated edeliver)
 
 - use another templating language, like DTL or HAML
 - arc for file uploads https://github.com/stavro/arc
