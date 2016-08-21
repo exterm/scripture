@@ -1,13 +1,16 @@
-.PHONY: plt hard_deploy production_backup
+.PHONY: plt hard_deploy production_backup production_restore test-stale
 
 plt:
 	mix dialyzer.plt
 	dialyzer --add_to_plt --plt scripture.plt --output_plt scripture.plt _build/dev/lib/plug/ebin _build/dev/lib/ecto/ebin
 
 hard_deploy:
-	mix edeliver build release --branch=scripture-new \
+	mix edeliver build release --branch=scripture-new --skip-git-clean --skip-mix-clean \
 	&& mix edeliver deploy release to production \
 	&& mix edeliver restart production
+
+test-stale:
+	mix test --stale
 
 BACKUP_LOCATION=~/Dropbox/scripture_backups
 SSH_HOST=scripture@hullubullu.de
