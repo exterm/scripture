@@ -6,7 +6,7 @@ defmodule Scripture.Repo.Migrations.CreateArticle do
       add :title, :string
       add :content, :string
 
-      timestamps
+      timestamps()
     end
 
   end

@@ -1,6 +1,7 @@
 ExUnit.start
 
-Mix.Task.run "ecto.create", ~w(-r Scripture.Repo --quiet)
-Mix.Task.run "ecto.migrate", ~w(-r Scripture.Repo --quiet)
-Ecto.Adapters.SQL.begin_test_transaction(Scripture.Repo)
+{:ok, _} = Application.ensure_all_started(:wallaby)
 
+Ecto.Adapters.SQL.Sandbox.mode(Scripture.Repo, :manual)
+
+Application.put_env(:wallaby, :base_url, Scripture.Endpoint.url)

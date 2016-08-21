@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
+APP="scripture"
 
-APP="scripture" # name of your release
-
-GIT_CLEAN_PATHS="build rel priv/static/generated"
+GIT_CLEAN_PATHS="_build rel priv/static/generated"
 
 BUILD_HOST="hullubullu.de" # host where to build the release
 BUILD_USER="scripture" # local user at build host
@@ -17,25 +15,10 @@ PRODUCTION_USER="scripture" # local user at deploy hosts
 DELIVER_TO="/opt/scripture" # deploy directory on production hosts
 
 pre_erlang_get_and_update_deps() {
-  __remote "
-    set -e
-    [ -f ~/.profile ] && source ~/.profile
-    cd $BUILD_AT $SILENCE
-    ln -fs /home/scripture/prod.secret.exs config/prod.secret.exs
-  "
-}
-
-pre_erlang_clean_compile() {
-  status "Running phoenix.digest" # log output prepended with "----->"
-  __sync_remote " # runs the commands on the build host
-    [ -f ~/.profile ] && source ~/.profile # load profile (optional)
-    set -e # fail if any command fails (recommended)
-    cd '$BUILD_AT' # enter the build directory on the build host (required)
-    # prepare something
-    mkdir -p priv/static # required by the phoenix.digest task
-    # run your custom task
-    npm install
-    node node_modules/brunch/bin/brunch build
-    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
-  "
+  local _prod_secret_path="/home/scripture/prod.secret.exs"
+  if [ "$TARGET_MIX_ENV" = "prod" ]; then
+    __sync_remote "
+      ln -sfn '$_prod_secret_path' '$BUILD_AT/config/prod.secret.exs'
+    "
+  fi
 }

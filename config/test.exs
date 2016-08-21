@@ -4,7 +4,10 @@ use Mix.Config
 # you can enable the server option below.
 config :scripture, Scripture.Endpoint,
   http: [port: 4001],
-  server: false
+  server: true
+
+# enable sql sandbox for wallaby integration testing
+config :scripture, :sql_sandbox, true
 
 # Print only warnings and errors during test
 config :logger, level: :warn

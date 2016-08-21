@@ -3,8 +3,6 @@ defmodule Scripture.ArticleController do
 
   alias Scripture.Article
 
-  plug :scrub_params, "article" when action in [:create, :update]
-
   def index(conn, _params) do
     articles = Repo.all(Article)
     render(conn, "index.html", articles: articles)
