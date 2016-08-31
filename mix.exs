@@ -9,6 +9,10 @@ defmodule Scripture.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     dialyzer: [flags: ["-Wunmatched_returns", "-Wrace_conditions",
+                        "-Werror_handling"],
+                plt_add_deps: true,
+                plt_file: "scripture.plt"],
      aliases: aliases(),
      deps: deps()]
   end
