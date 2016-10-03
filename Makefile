@@ -1,4 +1,4 @@
-.PHONY: plt hard_deploy production_backup production_restore test-stale
+.PHONY: plt hard_deploy deploy production_backup production_restore test-stale
 
 # dirty hack
 CURRENT_VERSION=$(shell grep version: mix.exs | sed -n "s/.*[\"']\([^\"']*\)[\"'].*/\1/p")
@@ -13,6 +13,9 @@ hard_deploy:
 	&& mix edeliver deploy release to production --version=$(CURRENT_VERSION) --verbose \
 	&& mix edeliver restart production --verbose \
 	&& mix edeliver migrate production up --version=$(CURRENT_VERSION) --verbose
+
+deploy:
+	mix edeliver upgrade production --skip-git-clean
 
 test-stale:
 	mix test --stale
