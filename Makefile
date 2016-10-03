@@ -2,12 +2,14 @@
 
 plt:
 	mix dialyzer.plt
-	dialyzer --add_to_plt --plt scripture.plt --output_plt scripture.plt _build/dev/lib/plug/ebin _build/dev/lib/ecto/ebin
+	dialyzer --add_to_plt --plt scripture.plt --output_plt scripture.plt \
+          _build/dev/lib/plug/ebin _build/dev/lib/ecto/ebin
 
 hard_deploy:
-	mix edeliver build release --branch=master --skip-git-clean --skip-mix-clean \
-	&& mix edeliver deploy release to production \
-	&& mix edeliver restart production
+	mix edeliver build release --branch=master --skip-git-clean --verbose \
+	&& mix edeliver deploy release to production --verbose \
+	&& mix edeliver restart production --verbose \
+	&& mix edeliver migrate production up --verbose
 
 test-stale:
 	mix test --stale
