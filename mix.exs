@@ -19,7 +19,7 @@ defmodule Scripture.Mixfile do
   def application do
     [mod: {Scripture, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :rollbax]]
+                    :phoenix_ecto, :postgrex, :rollbax, :edeliver]]
   end
 
   # Specifies which paths to compile per environment.
