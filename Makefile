@@ -1,4 +1,4 @@
-.PHONY: plt hard_deploy production_backup production_restore test-stale
+.PHONY: plt hard_deploy deploy production_backup production_restore test-stale
 
 plt:
 	mix dialyzer.plt
@@ -10,6 +10,9 @@ hard_deploy:
 	&& mix edeliver deploy release to production --verbose \
 	&& mix edeliver restart production --verbose \
 	&& mix edeliver migrate production up --verbose
+
+deploy:
+	mix edeliver upgrade production --skip-git-clean
 
 test-stale:
 	mix test --stale

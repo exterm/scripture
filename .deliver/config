@@ -1,5 +1,8 @@
 APP="scripture"
 
+AUTO_VERSION=commit-count+git-revision+branch-unless-master
+START_DEPLOY=true
+
 GIT_CLEAN_PATHS="_build rel priv/static/generated"
 
 BUILD_HOST="hullubullu.de" # host where to build the release
