@@ -19,6 +19,9 @@ defmodule Scripture.Router do
 
     get "/", PageController, :index
 
+    get "/send_login_token", LoginTokenController, :new
+    post "/send_login_token", LoginTokenController, :create
+
     resources "/articles", ArticleController
   end
 
