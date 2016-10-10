@@ -1,4 +1,4 @@
-.PHONY: plt hard_deploy production_backup production_restore test-stale
+.PHONY: dbconsole_dev plt hard_deploy production_backup production_restore test-stale
 
 # dirty hack
 CURRENT_VERSION=$(shell grep version: mix.exs | sed -n "s/.*[\"']\([^\"']*\)[\"'].*/\1/p")
@@ -40,3 +40,6 @@ production_restore:
 	ssh $(SSH_HOST) createdb $(DB_NAME)
 	ssh $(SSH_HOST) "gunzip -c $(RESTORE_LOCATION)/$(RESTORE_FILENAME) | psql $(DB_NAME)"
 	mix edeliver start production
+
+dbconsole_dev:
+	psql -h localhost -U postgres -W scripture_dev
