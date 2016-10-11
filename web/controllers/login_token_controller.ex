@@ -7,8 +7,8 @@ defmodule Scripture.LoginTokenController do
     render conn, "new.html"
   end
 
-  def create(conn, %{"login_token" => form_params}) do
-    case Scripture.Repo.get_by(User, email: String.downcase(form_params["email"])) do
+  def create(conn, %{"login_token_create" => form_params}) do
+    case Repo.get_by(User, email: String.downcase(form_params["email"])) do
       nil ->
         conn
         |> put_flash(:error, "No user found with that email")

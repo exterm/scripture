@@ -4,7 +4,6 @@
 
 - Password less login: einfach login link schicken, cookie mit langer Laufzeit setzen (da sollte wohl noch eine checkbox sein, um sessioncookie von ewigem cookie zu unterscheiden)
   - http://inaka.net/blog/2016/07/27/passwordless-login-with-phoenix
-- users: https://github.com/zmoshansky/aeacus
 - roles: https://github.com/vysakh0/exbouncer
 - let admins create articles, users read them
 

@@ -16,6 +16,13 @@ defmodule Scripture.Web do
   below.
   """
 
+  def plug do
+    quote do
+      alias Scripture.Repo
+      import Plug.Conn
+    end
+  end
+
   def model do
     quote do
       use Ecto.Schema
