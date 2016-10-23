@@ -1,6 +1,11 @@
 defmodule Scripture.Acceptance.ArticlesTest do
   use Scripture.AcceptanceCase, async: true
 
+  setup %{session: session} do
+    user = persist_fixture(:user)
+    {:ok, session: log_in_as(session, user)}
+  end
+
   test "create article", %{session: session} do
     article_title = "Batman"
 
@@ -17,8 +22,7 @@ defmodule Scripture.Acceptance.ArticlesTest do
       session
       |> all("td.article-title")
       |> List.first
-      |> text
 
-    assert first_title == article_title
+    assert_text(first_title, article_title)
   end
 end

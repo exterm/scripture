@@ -17,7 +17,7 @@
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
             <%= if @current_user do %>
-              <li><%= @current_user.email %></li>
+              <li>Eingeloggt als <%= @current_user.first_name <> " " <> @current_user.last_name %></li>
             <% else %>
               <li><%= link "Login", to: login_token_path(@conn, :new) %></li>
             <% end %>

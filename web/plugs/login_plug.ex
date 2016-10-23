@@ -9,7 +9,8 @@ defmodule Scripture.LoginPlug do
              %User{} = logged_in_user ->
                logged_in_user
              nil ->
-               try_login_and_get_user(params)
+               conn.assigns[:current_user] || # tests assign this to spoof login :(
+                 try_login_and_get_user(params)
            end
 
     if user do

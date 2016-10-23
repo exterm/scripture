@@ -31,8 +31,7 @@ defmodule Scripture.User do
   Generates a new login token
   """
   def new_login_token() do
-    timestamp = DateTime.utc_now()
-    new_login_token(timestamp)
+    new_login_token(DateTime.utc_now())
   end
   def new_login_token(timestamp) do
     %{

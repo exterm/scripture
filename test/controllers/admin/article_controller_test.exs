@@ -1,9 +1,14 @@
-defmodule Scripture.ArticleControllerTest do
+defmodule Scripture.Admin.ArticleControllerTest do
   use Scripture.ConnCase
 
   alias Scripture.Article
   @valid_attrs %{content: "some content", title: "some content"}
   @invalid_attrs %{}
+
+  setup %{conn: conn} do
+    user = persist_fixture(:user)
+    {:ok, conn: log_in_as(conn, user)}
+  end
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, admin_article_path(conn, :index)

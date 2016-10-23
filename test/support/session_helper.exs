@@ -16,7 +16,11 @@ defmodule Scripture.SessionHelper do
     conn
     |> Map.put(:secret_key_base, String.duplicate("abcdefgh", 8))
     |> Plug.Session.call(@session)
-    |> Plug.Conn.fetch_session()
-    |> Plug.Conn.fetch_query_params()
+    |> Plug.Conn.fetch_session
+    |> Plug.Conn.fetch_query_params
+  end
+
+  def log_in_as(conn, user) do
+    Plug.Conn.assign(conn, :current_user, user)
   end
 end

@@ -23,7 +23,9 @@ defmodule Scripture.LoginTokenController do
 
         conn
         |> put_flash(:info, "Login link sent to #{form_params["email"]}")
-        |> redirect(to: "/")
+        |> redirect(to: "/login_token_created")
     end
   end
+
+  def success(conn, _params), do: render(conn, "success.html")
 end
