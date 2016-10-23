@@ -18,7 +18,7 @@ defmodule Scripture.LoginTokenController do
         changeset = User.changeset(user, new_token_params)
         Repo.update!(changeset)
 
-        # FIXME remove
+        # TODO remove token logging
         IO.write("-- new login token: #{new_token_params[:login_token]}\n")
 
         conn
