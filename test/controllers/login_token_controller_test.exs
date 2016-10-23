@@ -13,7 +13,7 @@ defmodule Scripture.LoginTokenControllerTest do
     Repo.insert!(User.changeset(%User{}, %{first_name: "Bernd", last_name: "Berndes", email: email}))
 
     conn = post conn, login_token_path(conn, :create), login_token_create: %{email: email}
-    assert redirected_to(conn) == page_path(conn, :index)
+    assert redirected_to(conn) == homepage_path(conn, :index)
 
     conn = get conn, redirected_to(conn)
     assert html_response(conn, 200) =~ "Login link sent to #{email}"

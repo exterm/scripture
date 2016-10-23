@@ -14,5 +14,5 @@
 
 </ul>
 
-<%= link "Edit", to: article_path(@conn, :edit, @article) %>
-<%= link "Back", to: article_path(@conn, :index) %>
+<%= link "Edit", to: admin_article_path(@conn, :edit, @article) %>
+<%= link "Back", to: admin_article_path(@conn, :index) %>

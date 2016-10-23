@@ -5,7 +5,7 @@ defmodule Scripture.Acceptance.ArticlesTest do
     article_title = "Batman"
 
     session
-    |> visit("/articles")
+    |> visit("/admin/articles")
     |> click_link("New article")
 
     session

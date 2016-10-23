@@ -1,4 +1,4 @@
-defmodule Scripture.ArticleController do
+defmodule Scripture.Admin.ArticleController do
   use Scripture.Web, :controller
 
   alias Scripture.Article
@@ -20,7 +20,7 @@ defmodule Scripture.ArticleController do
       {:ok, _article} ->
         conn
         |> put_flash(:info, "Article created successfully.")
-        |> redirect(to: article_path(conn, :index))
+        |> redirect(to: admin_article_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -45,7 +45,7 @@ defmodule Scripture.ArticleController do
       {:ok, article} ->
         conn
         |> put_flash(:info, "Article updated successfully.")
-        |> redirect(to: article_path(conn, :show, article))
+        |> redirect(to: admin_article_path(conn, :show, article))
       {:error, changeset} ->
         render(conn, "edit.html", article: article, changeset: changeset)
     end
@@ -60,6 +60,6 @@ defmodule Scripture.ArticleController do
 
     conn
     |> put_flash(:info, "Article deleted successfully.")
-    |> redirect(to: article_path(conn, :index))
+    |> redirect(to: admin_article_path(conn, :index))
   end
 end

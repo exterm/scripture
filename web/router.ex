@@ -18,10 +18,14 @@ defmodule Scripture.Router do
   scope "/", Scripture do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", HomepageController, :index
 
     get "/send_login_token", LoginTokenController, :new
     post "/send_login_token", LoginTokenController, :create
+  end
+
+  scope "/admin", Scripture.Admin, as: :admin do
+    pipe_through :browser # Use the default browser stack
 
     resources "/articles", ArticleController
   end
