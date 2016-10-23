@@ -19,6 +19,7 @@ defmodule Scripture.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
+      use Scripture.SessionHelper
 
       alias Scripture.Repo
       import Ecto
@@ -26,6 +27,7 @@ defmodule Scripture.ConnCase do
       import Ecto.Query
 
       import Scripture.Router.Helpers
+      import Scripture.Fixtures
 
       # The default endpoint for testing
       @endpoint Scripture.Endpoint

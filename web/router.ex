@@ -8,24 +8,42 @@ defmodule Scripture.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Scripture.LoginPlug
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :reader_authentication do
+    plug Scripture.AuthenticatePlug, :reader
   end
 
+  pipeline :admin_authentication do
+    plug Scripture.AuthenticatePlug, :admin
+  end
+
+  # public routes
   scope "/", Scripture do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/send_login_token", LoginTokenController, :new
+    post "/send_login_token", LoginTokenController, :create
+    get "/login_token_created", LoginTokenController, :success
+  end
+
+  # reader routes
+  # TODO namespacing for reader area
+  scope "/", Scripture do
+    pipe_through :browser # Use the default browser stack
+    pipe_through :reader_authentication
+
+    get "/", HomepageController, :index
+  end
+
+  # admin routes
+  scope "/admin", Scripture.Admin, as: :admin do
+    pipe_through :browser # Use the default browser stack
+    pipe_through :admin_authentication
 
     resources "/articles", ArticleController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Scripture do
-  #   pipe_through :api
-  # end
 
   # don't report routing errors
   defp handle_errors(_conn, %{reason: %Phoenix.Router.NoRouteError{}}), do: nil

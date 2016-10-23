@@ -1,3 +1,6 @@
+Code.require_file("support/session_helper.exs", __DIR__)
+Code.require_file("support/acceptance_helper.exs", __DIR__)
+
 ExUnit.start
 
 {:ok, _} = Application.ensure_all_started(:wallaby)

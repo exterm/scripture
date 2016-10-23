@@ -41,7 +41,8 @@ defmodule Scripture.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_scripture_key",
-    signing_salt: "J+9JWTfs"
+    signing_salt: "J+9JWTfs",
+    max_age: 60*60*24*30
 
   plug Scripture.Router
 end
