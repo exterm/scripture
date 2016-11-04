@@ -17,6 +17,7 @@ defmodule Scripture.SessionHelper do
     |> Map.put(:secret_key_base, String.duplicate("abcdefgh", 8))
     |> Plug.Session.call(@session)
     |> Plug.Conn.fetch_session
+    |> Phoenix.Controller.fetch_flash
     |> Plug.Conn.fetch_query_params
   end
 

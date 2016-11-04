@@ -6,7 +6,6 @@ defmodule Scripture.AuthenticatePlugTest do
   test "triggers redirect if no logged in user" do
     conn = build_conn(:get, "/admin/articles")
     |> with_session
-    |> fetch_flash
     |> Scripture.AuthenticatePlug.call(@opts)
 
     assert conn.status == 302
