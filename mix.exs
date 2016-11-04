@@ -10,7 +10,12 @@ defmodule Scripture.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
-     deps: deps()]
+     deps: deps(),
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test,
+                         "coveralls.detail": :test,
+                         "coveralls.post": :test,
+                         "coveralls.html": :test]]
   end
 
   # Configuration for the OTP application.
@@ -41,7 +46,8 @@ defmodule Scripture.Mixfile do
      {:rollbax, "~> 0.6"},
      {:wallaby, "~> 0.12.0"},
      {:edeliver, "~> 1.4.0"},
-     {:distillery, ">= 0.8.0", warn_missing: false} # as per edeliver docs
+     {:distillery, ">= 0.8.0", warn_missing: false}, # as per edeliver docs
+     {:excoveralls, github: "parroty/excoveralls", only: :test},
     ]
   end
 

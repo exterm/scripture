@@ -7,3 +7,7 @@ cache:
   directories:
     - deps
     - _build
+env:
+  - MIX_ENV=test
+script:
+  - mix coveralls.travis
