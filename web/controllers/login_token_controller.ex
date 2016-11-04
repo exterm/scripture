@@ -1,6 +1,6 @@
 defmodule Scripture.LoginTokenController do
   use Scripture.Web, :controller
-
+  import Scripture.LoginTokenService, only: [create_and_send_token: 1]
   alias Scripture.User
 
   def new(conn, _params) do
@@ -14,12 +14,7 @@ defmodule Scripture.LoginTokenController do
         |> put_flash(:error, "No user found with that email")
         |> render("new.html")
       user ->
-        new_token_params = User.new_login_token
-        changeset = User.changeset(user, new_token_params)
-        Repo.update!(changeset)
-
-        # TODO remove token logging
-        IO.write("-- new login token: #{new_token_params[:login_token]}\n")
+        create_and_send_token(user)
 
         conn
         |> put_flash(:info, "Login link sent to #{form_params["email"]}")
