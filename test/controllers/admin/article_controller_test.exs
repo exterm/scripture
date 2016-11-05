@@ -1,5 +1,5 @@
 defmodule Scripture.Admin.ArticleControllerTest do
-  use Scripture.ConnCase
+  use Scripture.ConnCase, async: true
 
   alias Scripture.Article
   @valid_attrs %{content: "some content", title: "some content"}

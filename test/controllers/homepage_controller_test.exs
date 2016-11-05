@@ -1,5 +1,5 @@
 defmodule Scripture.HomepageControllerTest do
-  use Scripture.ConnCase
+  use Scripture.ConnCase, async: true
 
   setup %{conn: conn} do
     user = persist_fixture(:user)

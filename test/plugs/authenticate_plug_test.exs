@@ -1,5 +1,5 @@
 defmodule Scripture.AuthenticatePlugTest do
-  use Scripture.ConnCase
+  use Scripture.ConnCase, async: true
 
   @opts Scripture.AuthenticatePlug.init(:reader)
 
