@@ -1,12 +1,11 @@
 defmodule Scripture.AuthenticatePlugTest do
-  use Scripture.ConnCase
+  use Scripture.ConnCase, async: true
 
   @opts Scripture.AuthenticatePlug.init(:reader)
 
   test "triggers redirect if no logged in user" do
     conn = build_conn(:get, "/admin/articles")
     |> with_session
-    |> fetch_flash
     |> Scripture.AuthenticatePlug.call(@opts)
 
     assert conn.status == 302

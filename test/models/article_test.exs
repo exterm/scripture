@@ -1,5 +1,5 @@
 defmodule Scripture.ArticleTest do
-  use Scripture.ModelCase
+  use Scripture.ModelCase, async: true
 
   alias Scripture.Article
 

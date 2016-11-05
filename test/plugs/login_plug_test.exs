@@ -1,5 +1,5 @@
 defmodule Scripture.LoginPlugTest do
-  use Scripture.ConnCase
+  use Scripture.ConnCase, async: true
 
   @opts Scripture.LoginPlug.init([])
 

@@ -1,14 +1,16 @@
 defmodule Scripture.LoginTokenControllerTest do
-  use Scripture.ConnCase
+  use Scripture.ConnCase, async: true
+
+  import Swoosh.TestAssertions
 
   alias Scripture.User
-  
+
   test "renders login form", %{conn: conn} do
     conn = get conn, login_token_path(conn, :new)
     assert html_response(conn, 200) =~ "Login"
   end
 
-  test "creates login token and redirects when user exists", %{conn: conn} do
+  test "creates login token, sends email and redirects when user exists", %{conn: conn} do
     user = persist_fixture(:user)
 
     conn = post conn, login_token_path(conn, :create), login_token_create: %{email: user.email}
@@ -17,7 +19,9 @@ defmodule Scripture.LoginTokenControllerTest do
     conn = get conn, redirected_to(conn)
     assert html_response(conn, 200) =~ "Login link sent to #{user.email}"
 
-    assert Repo.get!(User, user.id).login_token
+    changed_user = Repo.get!(User, user.id)
+    assert changed_user.login_token != user.login_token
+    assert_email_sent Scripture.UserEmail.login_token(changed_user)
   end
 
   test "does not create login token and renders error when user not found", %{conn: conn} do

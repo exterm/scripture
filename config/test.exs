@@ -22,3 +22,6 @@ config :scripture, Scripture.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :rollbax, enabled: false
+
+config :scripture, Scripture.Mailer,
+  adapter: Swoosh.Adapters.Test
