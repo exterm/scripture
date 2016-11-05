@@ -11,7 +11,7 @@ defmodule Scripture.HomepageControllerTest do
 
     html_response(conn, 200)
 
-    # TODO
+    # TODO articles index
     # assert html_response(conn, 200) =~ "Hier sind die neusten Artikel gelistet"
   end
  end

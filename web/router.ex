@@ -23,13 +23,12 @@ defmodule Scripture.Router do
   scope "/", Scripture do
     pipe_through :browser # Use the default browser stack
 
-    get "/send_login_token", LoginTokenController, :new
+    get  "/send_login_token", LoginTokenController, :new
     post "/send_login_token", LoginTokenController, :create
-    get "/login_token_created", LoginTokenController, :success
+    get  "/login_token_created", LoginTokenController, :success
   end
 
   # reader routes
-  # TODO namespacing for reader area
   scope "/", Scripture do
     pipe_through [:browser, :reader_authentication]
 
