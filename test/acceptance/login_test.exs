@@ -8,7 +8,12 @@ defmodule Scripture.Acceptance.LoginTest do
 
     assert get_current_path(body) == "/send_login_token"
 
-    # TODO assert flash: Du musst dich einloggen
+    flash_content =
+      session
+      |> all("p.alert.alert-danger")
+      |> List.first
+
+    assert_text(flash_content, "logge dich ein")
     assert_text(body, "Send login link")
   end
 
