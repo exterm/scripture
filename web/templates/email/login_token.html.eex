@@ -1,0 +1,3 @@
+<div>
+  <span>Du kannst dich jetzt <a href="<%= homepage_url(Scripture.Endpoint, :index) <> "?login_token=" <> @token %>">einloggen</a>!</span>
+</div>

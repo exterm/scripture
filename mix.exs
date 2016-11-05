@@ -19,7 +19,7 @@ defmodule Scripture.Mixfile do
   def application do
     [mod: {Scripture, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :rollbax, :edeliver]]
+                    :phoenix_ecto, :postgrex, :rollbax, :edeliver, :phoenix_swoosh]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,9 +39,10 @@ defmodule Scripture.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:rollbax, "~> 0.6"},
-     {:wallaby, "~> 0.12.0"},
+     {:wallaby, "~> 0.12.0", only: :test},
      {:edeliver, "~> 1.4.0"},
-     {:distillery, ">= 0.8.0", warn_missing: false} # as per edeliver docs
+     {:distillery, ">= 0.8.0", warn_missing: false}, # as per edeliver docs
+     {:phoenix_swoosh, "~> 0.1"}, # emails - restriction as per docs
     ]
   end
 

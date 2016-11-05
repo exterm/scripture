@@ -1,13 +1,13 @@
 defmodule Scripture.LoginTokenService do
   alias Scripture.{ Repo, User }
+  alias Scripture.{ UserEmail, Mailer }
 
   def create_and_send_token(user) do
     new_token_params = User.new_login_token
     changeset = User.changeset(user, new_token_params)
-    Repo.update!(changeset)
+    new_user = Repo.update!(changeset)
 
-    # TODO remove token logging
-    IO.write("-- new login token: #{new_token_params[:login_token]}\n")
+    UserEmail.login_token(new_user) |> Mailer.deliver
   end
 
   def login_and_get_user(token) do

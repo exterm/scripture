@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :scripture, Scripture.Endpoint,
   http: [port: 4800],
-  url: [host: "scripture.hullubullu.de"],
+  url: [host: "annaundphilip.info"],
   cache_static_manifest: "priv/static/manifest.json",
   server: true
 

@@ -31,18 +31,24 @@ defmodule Scripture.Router do
   # reader routes
   # TODO namespacing for reader area
   scope "/", Scripture do
-    pipe_through :browser # Use the default browser stack
-    pipe_through :reader_authentication
+    pipe_through [:browser, :reader_authentication]
 
     get "/", HomepageController, :index
   end
 
   # admin routes
   scope "/admin", Scripture.Admin, as: :admin do
-    pipe_through :browser # Use the default browser stack
-    pipe_through :admin_authentication
+    pipe_through [:browser, :admin_authentication]
 
     resources "/articles", ArticleController
+  end
+
+  if Mix.env == :dev do
+    scope "/dev" do
+      pipe_through :browser
+
+      forward "/mailbox", Plug.Swoosh.MailboxPreview, [base_path: "/dev/mailbox"]
+    end
   end
 
   # don't report routing errors
