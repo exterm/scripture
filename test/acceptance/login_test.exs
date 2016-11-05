@@ -10,7 +10,7 @@ defmodule Scripture.Acceptance.LoginTest do
 
     flash_content =
       session
-      |> all("p.alert.alert-danger")
+      |> all("p.alert.alert-info")
       |> List.first
 
     assert_text(flash_content, "logge dich ein")

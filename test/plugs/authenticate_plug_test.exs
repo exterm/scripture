@@ -10,7 +10,7 @@ defmodule Scripture.AuthenticatePlugTest do
 
     assert conn.status == 302
     assert redirected_to(conn) == "/send_login_token"
-    assert String.contains?(get_flash(conn, :error), "Bitte logge dich ein")
+    assert String.contains?(get_flash(conn, :info), "Bitte logge dich ein")
   end
 
   test "does not trigger redirect if logged in user" do
