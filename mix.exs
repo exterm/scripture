@@ -38,7 +38,7 @@ defmodule Scripture.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:rollbax, "~> 0.6"},
+     {:rollbax, "~> 0.7"},
      {:wallaby, "~> 0.12.0", only: :test},
      {:edeliver, "~> 1.4.0"},
      {:distillery, ">= 0.8.0", warn_missing: false}, # as per edeliver docs
