@@ -8,10 +8,24 @@ defmodule Scripture.Fixtures do
   end
 
   def build_fixture(:user) do
-    User.changeset(
-      %User{first_name: "Bernd",
-            last_name: "Berndes",
-            email: "bernd@example.com"},
-      User.new_login_token)
+    User.admin_changeset(
+      %User{},
+      Map.merge(
+        %{first_name: "Bernd",
+          last_name: "Berndes",
+          email: "bernd@example.com",
+          role: "reader"},
+        User.new_login_token))
+  end
+
+  def build_fixture(:admin) do
+    User.admin_changeset(
+      %User{},
+      Map.merge(
+        %{first_name: "Bernd",
+          last_name: "Berndes",
+          email: "bernd@example.com",
+          role: "admin"},
+        User.new_login_token))
   end
 end

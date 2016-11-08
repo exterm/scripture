@@ -6,7 +6,8 @@ defmodule Scripture.Acceptance.LoginTest do
       |> visit("/")
       |> find("body")
 
-    assert get_current_path(body) == "/send_login_token"
+    # no redirect
+    assert get_current_path(body) == "/"
 
     flash_content =
       session
