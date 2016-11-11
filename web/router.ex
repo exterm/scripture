@@ -32,7 +32,8 @@ defmodule Scripture.Router do
   scope "/", Scripture do
     pipe_through [:browser, :reader_authentication]
 
-    get "/", HomepageController, :index
+    get "/", ArticleController, :index
+    get "/articles/:id", ArticleController, :show
   end
 
   # admin routes

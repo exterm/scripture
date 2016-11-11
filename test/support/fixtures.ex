@@ -1,7 +1,9 @@
 # for more functionality, read http://blog.danielberkompas.com/elixir/2015/07/16/fixtures-for-ecto.html
 defmodule Scripture.Fixtures do
   alias Scripture.Repo
+
   alias Scripture.User
+  alias Scripture.Article
 
   def persist_fixture(name) do
     Repo.insert!(build_fixture(name))
@@ -27,5 +29,12 @@ defmodule Scripture.Fixtures do
           email: "bernd@example.com",
           role: "admin"},
         User.new_login_token))
+  end
+
+  def build_fixture(:article) do
+    Article.changeset(
+      %Article{},
+      %{title: "Die 33 besten Artikel-Headlines",
+        content: "Buzzfeed hat angerufen."})
   end
 end
