@@ -28,6 +28,9 @@ defmodule Scripture.LoginPlug do
   defp try_login_and_get_user(_params), do: nil
 
   defp load_user_for_session(conn) do
-    Repo.get(User, get_session(conn, :current_user) || 0)
+    user_id = get_session(conn, :current_user)
+    if user_id do
+      Repo.get(User, user_id)
+    end
   end
 end
