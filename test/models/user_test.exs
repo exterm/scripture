@@ -1,6 +1,8 @@
 defmodule Scripture.UserTest do
   use Scripture.ModelCase, async: true
 
+  import Scripture.Fixtures
+
   alias Scripture.User
 
   @valid_attrs %{email: "some content", first_name: "some content", last_name: "some content"}
@@ -14,6 +16,20 @@ defmodule Scripture.UserTest do
   test "changeset without attributes" do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
+  end
+
+  test "changeset doesn't change role" do
+    reader = build_fixture(:user)
+    changeset = User.changeset(reader, %{role: "admin"})
+
+    assert {:ok, "reader"} = Ecto.Changeset.fetch_change(changeset, :role)
+  end
+
+  test "admin_changeset does change role" do
+    reader = build_fixture(:user)
+    changeset = User.admin_changeset(reader, %{role: "admin"})
+
+    assert {:ok, "admin"} = Ecto.Changeset.fetch_change(changeset, :role)
   end
 
   test "generating a new login token" do

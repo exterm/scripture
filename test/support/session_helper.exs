@@ -1,10 +1,5 @@
 defmodule Scripture.SessionHelper do
-  @session Plug.Session.init(
-    store: :cookie,
-    key: "_app",
-    encryption_salt: "yadayada",
-    signing_salt: "yadayada"
-  )
+  import Phoenix.ConnTest, only: [build_conn: 0, bypass_through: 3]
 
   defmacro __using__(_) do
     quote do
@@ -12,13 +7,8 @@ defmodule Scripture.SessionHelper do
     end
   end
 
-  def with_session(conn) do
-    conn
-    |> Map.put(:secret_key_base, String.duplicate("abcdefgh", 8))
-    |> Plug.Session.call(@session)
-    |> Plug.Conn.fetch_session
-    |> Phoenix.Controller.fetch_flash
-    |> Plug.Conn.fetch_query_params
+  def browser_conn() do
+    bypass_through(build_conn(), Scripture.Router, [:browser])
   end
 
   def log_in_as(conn, user) do

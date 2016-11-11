@@ -7,13 +7,11 @@ defmodule Scripture.User do
     field :email, :string
     field :login_token, :string
     field :login_token_created_at, Ecto.DateTime
+    field :role, :string
 
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [
@@ -22,9 +20,20 @@ defmodule Scripture.User do
           :email,
           :login_token,
           :login_token_created_at])
-    |> validate_required([:first_name, :last_name, :email])
-    |> unique_constraint(:email)
-    |> unique_constraint(:login_token)
+    |> general_validations
+  end
+
+  def admin_changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [
+          :first_name,
+          :last_name,
+          :email,
+          :login_token,
+          :login_token_created_at,
+          :role])
+    |> validate_inclusion(:role, ["reader", "admin"])
+    |> general_validations
   end
 
   @doc """
@@ -38,5 +47,12 @@ defmodule Scripture.User do
       login_token: :crypto.hash(:sha512, to_string(timestamp)) |> Base.encode16,
       login_token_created_at: timestamp
     }
+  end
+
+  defp general_validations(changeset) do
+    changeset
+    |> validate_required([:first_name, :last_name, :email])
+    |> unique_constraint(:email)
+    |> unique_constraint(:login_token)
   end
 end

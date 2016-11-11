@@ -1,0 +1,6 @@
+<h2><%= @article.title %></h2>
+
+<%= @article.content %>
+
+<br/>
+<%= link "Zurück zur Übersicht", to: article_path(@conn, :index) %>

@@ -6,7 +6,7 @@ defmodule Scripture.Admin.ArticleControllerTest do
   @invalid_attrs %{}
 
   setup %{conn: conn} do
-    user = persist_fixture(:user)
+    user = persist_fixture(:admin)
     {:ok, conn: log_in_as(conn, user)}
   end
 

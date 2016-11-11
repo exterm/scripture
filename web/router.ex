@@ -12,11 +12,11 @@ defmodule Scripture.Router do
   end
 
   pipeline :reader_authentication do
-    plug Scripture.AuthenticatePlug, :reader
+    plug Scripture.AuthenticatePlug, "reader"
   end
 
   pipeline :admin_authentication do
-    plug Scripture.AuthenticatePlug, :admin
+    plug Scripture.AuthenticatePlug, "admin"
   end
 
   # public routes
@@ -32,7 +32,8 @@ defmodule Scripture.Router do
   scope "/", Scripture do
     pipe_through [:browser, :reader_authentication]
 
-    get "/", HomepageController, :index
+    get "/", ArticleController, :index
+    get "/articles/:id", ArticleController, :show
   end
 
   # admin routes

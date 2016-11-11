@@ -2,7 +2,7 @@ defmodule Scripture.Acceptance.ArticlesTest do
   use Scripture.AcceptanceCase, async: true
 
   setup %{session: session} do
-    user = persist_fixture(:user)
+    user = persist_fixture(:admin)
     {:ok, session: log_in_as(session, user)}
   end
 
