@@ -43,6 +43,7 @@ defmodule Scripture.Mixfile do
      {:edeliver, "~> 1.4.0"},
      {:distillery, ">= 0.8.0", warn_missing: false}, # as per edeliver docs
      {:phoenix_swoosh, "~> 0.1"}, # emails - restriction as per docs
+     {:earmark, "> 0.0.0"}, # markdown support
     ]
   end
 
