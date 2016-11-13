@@ -19,9 +19,10 @@
             <%= if @current_user do %>
               <li>Eingeloggt als <%= @current_user.first_name <> " " <> @current_user.last_name %></li>
               <%= if @current_user.role == "admin" do %>
-                <li><a href="<%= admin_article_path(@conn, :index) %>">Admin-Bereich</a></li>
+                <li><%= link "Admin-Bereich", to: admin_article_path(@conn, :index) %></li>
               <% end %>
             <% end %>
+            <li><%= link "Artikel-Übersicht", to: "/" %></li>
           </ul>
         </nav>
         <span class="logo"></span>

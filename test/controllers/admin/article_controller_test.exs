@@ -32,7 +32,7 @@ defmodule Scripture.Admin.ArticleControllerTest do
   end
 
   test "shows chosen resource", %{conn: conn} do
-    article = Repo.insert! %Article{}
+    article = persist_fixture(:article)
     conn = get conn, admin_article_path(conn, :show, article)
     assert html_response(conn, 200) =~ "Show article"
   end
@@ -44,13 +44,13 @@ defmodule Scripture.Admin.ArticleControllerTest do
   end
 
   test "renders form for editing chosen resource", %{conn: conn} do
-    article = Repo.insert! %Article{}
+    article = persist_fixture(:article)
     conn = get conn, admin_article_path(conn, :edit, article)
     assert html_response(conn, 200) =~ "Edit article"
   end
 
   test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    article = Repo.insert! %Article{}
+    article = persist_fixture(:article)
     conn = put conn, admin_article_path(conn, :update, article), article: @valid_attrs
     assert redirected_to(conn) == admin_article_path(conn, :show, article)
     assert Repo.get_by(Article, @valid_attrs)
@@ -63,7 +63,7 @@ defmodule Scripture.Admin.ArticleControllerTest do
   end
 
   test "deletes chosen resource", %{conn: conn} do
-    article = Repo.insert! %Article{}
+    article = persist_fixture(:article)
     conn = delete conn, admin_article_path(conn, :delete, article)
     assert redirected_to(conn) == admin_article_path(conn, :index)
     refute Repo.get(Article, article.id)
