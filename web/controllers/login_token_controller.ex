@@ -11,13 +11,13 @@ defmodule Scripture.LoginTokenController do
     case Repo.get_by(User, email: String.downcase(form_params["email"])) do
       nil ->
         conn
-        |> put_flash(:error, "No user found with that email")
+        |> put_flash(:error, "Ich kenne keinen Nutzer mit dieser E-Mail-Adresse.")
         |> render("new.html")
       user ->
         create_and_send_token(user)
 
         conn
-        |> put_flash(:success, "Login link sent to #{form_params["email"]}")
+        |> put_flash(:success, "Login-Link an #{form_params["email"]} gesendet.")
         |> redirect(to: "/login_token_created")
     end
   end

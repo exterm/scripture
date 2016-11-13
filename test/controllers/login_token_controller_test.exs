@@ -17,7 +17,7 @@ defmodule Scripture.LoginTokenControllerTest do
     assert redirected_to(conn) == login_token_path(conn, :success)
 
     conn = get conn, redirected_to(conn)
-    assert html_response(conn, 200) =~ "Login link sent to #{user.email}"
+    assert html_response(conn, 200) =~ "Login-Link an #{user.email} gesendet."
 
     changed_user = Repo.get!(User, user.id)
     assert changed_user.login_token != user.login_token
@@ -28,6 +28,6 @@ defmodule Scripture.LoginTokenControllerTest do
     email = "not-existing@example.com"
 
     conn = post conn, login_token_path(conn, :create), login_token_create: %{email: email}
-    assert html_response(conn, 200) =~ "No user found with that email"
+    assert html_response(conn, 200) =~ "Ich kenne keinen Nutzer mit dieser E-Mail-Adresse."
   end
 end
