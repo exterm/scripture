@@ -4,6 +4,12 @@ defmodule Scripture.ArticleView do
   import Scripture.DateView, only: [formatted_datetime: 1]
 
   def render_markdown(text) do
-    Earmark.to_html(text)
+    text
+    |> fix_dropbox_image_urls
+    |> Earmark.to_html
+  end
+
+  defp fix_dropbox_image_urls(text) do
+    String.replace(text, "//www.dropbox.com/", "//dl.dropboxusercontent.com/")
   end
 end
