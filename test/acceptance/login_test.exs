@@ -15,7 +15,7 @@ defmodule Scripture.Acceptance.LoginTest do
       |> List.first
 
     assert_text(flash_content, "logge dich ein")
-    assert_text(body, "Send login link")
+    assert_text(body, "Sende mir einen Login-Link")
   end
 
   test "login flow part 2: logging in", %{session: session} do
