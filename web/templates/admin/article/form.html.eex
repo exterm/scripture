@@ -11,9 +11,11 @@
     <%= error_tag f, :title %>
   </div>
 
+
   <div class="form-group">
     <%= label f, :content, class: "control-label" %>
-    <%= text_input f, :content, class: "form-control" %>
+  (Für die Formatierung kannst Du <%= link "Markdown", to: "https://guides.github.com/features/mastering-markdown/" %> benutzen)
+    <%= textarea f, :content, class: "form-control" %>
     <%= error_tag f, :content %>
   </div>
 

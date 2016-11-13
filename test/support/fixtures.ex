@@ -5,36 +5,42 @@ defmodule Scripture.Fixtures do
   alias Scripture.User
   alias Scripture.Article
 
-  def persist_fixture(name) do
-    Repo.insert!(build_fixture(name))
+  def persist_fixture(name, attributes \\ %{}) do
+    Repo.insert!(build_fixture(name, attributes))
   end
 
-  def build_fixture(:user) do
+  def build_fixture(name, attributes \\ %{})
+
+  def build_fixture(:user, attributes) do
+    basic_defaults = %{first_name: "Bernd",
+                       last_name: "Berndes",
+                       email: "bernd@example.com",
+                       role: "reader"}
     User.admin_changeset(
       %User{},
-      Map.merge(
-        %{first_name: "Bernd",
-          last_name: "Berndes",
-          email: "bernd@example.com",
-          role: "reader"},
-        User.new_login_token))
+      basic_defaults
+      |> Map.merge(User.new_login_token)
+      |> Map.merge(attributes))
   end
 
-  def build_fixture(:admin) do
+  def build_fixture(:admin, attributes) do
+    basic_defaults = %{first_name: "Bernd",
+                       last_name: "Berndes",
+                       email: "bernd@example.com",
+                       role: "admin"}
     User.admin_changeset(
       %User{},
-      Map.merge(
-        %{first_name: "Bernd",
-          last_name: "Berndes",
-          email: "bernd@example.com",
-          role: "admin"},
-        User.new_login_token))
+      basic_defaults
+      |> Map.merge(User.new_login_token)
+      |> Map.merge(attributes))
   end
 
-  def build_fixture(:article) do
+  def build_fixture(:article, attributes) do
+    defaults = %{title: "Die 33 besten Artikel-Headlines",
+                 content: "Buzzfeed hat angerufen."}
     Article.changeset(
       %Article{},
-      %{title: "Die 33 besten Artikel-Headlines",
-        content: "Buzzfeed hat angerufen."})
+      defaults
+      |> Map.merge(attributes))
   end
 end

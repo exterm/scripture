@@ -1,18 +1,6 @@
 <h2>Show article</h2>
 
-<ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @article.title %>
-  </li>
-
-  <li>
-    <strong>Content:</strong>
-    <%= @article.content %>
-  </li>
-
-</ul>
+<%= render Scripture.ArticleView, "show.html", %{conn: @conn, article: @article} %>
 
 <%= link "Edit", to: admin_article_path(@conn, :edit, @article) %>
 <%= link "Back", to: admin_article_path(@conn, :index) %>
