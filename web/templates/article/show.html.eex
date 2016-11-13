@@ -1,6 +1,9 @@
-<h2><%= @article.title %></h2>
-
-<%= @article.content %>
-
-<br/>
-<%= link "Zurück zur Übersicht", to: article_path(@conn, :index) %>
+<article>
+  <header>
+    <h2><%= @article.title %></h2>
+  </header>
+  <%= {:safe, render_markdown @article.content} %>
+</article>
+<footer>
+  <%= link "Zurück zur Übersicht", to: article_path(@conn, :index) %>
+</footer>

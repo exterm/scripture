@@ -2,27 +2,28 @@ defmodule Scripture.Acceptance.ArticlesTest do
   use Scripture.AcceptanceCase, async: true
 
   setup %{session: session} do
-    user = persist_fixture(:admin)
+    user = persist_fixture(:user)
     {:ok, session: log_in_as(session, user)}
   end
 
-  test "create article", %{session: session} do
-    article_title = "Batman"
+  test "read article", %{session: session} do
+    article = persist_fixture(:article, %{content: "### Headline\n*emphasis*"})
 
     session
-    |> visit("/admin/articles")
-    |> click_link("New article")
+    |> visit("/articles/#{article.id}")
 
-    session
-    |> fill_in("Title", with: article_title)
-    |> fill_in("Content", with: "The Dark Knight Returns")
-    |> click_on("Submit")
-
-    first_title =
+    h3 =
       session
-      |> all("td.article-title")
+      |> all("article h3")
       |> List.first
 
-    assert_text(first_title, article_title)
+    assert_text(h3, "Headline")
+
+    emphasis =
+      session
+      |> all("article em")
+      |> List.first
+
+    assert_text(emphasis, "emphasis")
   end
 end
