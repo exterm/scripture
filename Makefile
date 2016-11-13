@@ -11,7 +11,7 @@ plt:
 hard_deploy:
 	RELEASE_VERSION=$(CURRENT_VERSION) mix edeliver build release --branch=master \
           --skip-git-clean --skip-mix-clean --verbose \
-	&& mix edeliver deploy release to production \
+	&& mix edeliver deploy release to production --version=$(CURRENT_VERSION) \
 	&& mix edeliver migrate production --version=$(CURRENT_VERSION) --verbose \
 	&& mix edeliver restart production --verbose
 
