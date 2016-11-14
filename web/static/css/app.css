@@ -77,6 +77,9 @@ a {
   border: 1px solid transparent;
   border-radius: 4px;
 }
+.alert p {
+  margin: 0px;
+}
 
 /* forms */
 
@@ -107,6 +110,11 @@ form button {
 
 form label {
   font-weight: 600;
+}
+
+form span.help-block {
+  color: #a94442;
+  padding-top: 0.2em;
 }
 
 /* main header */
