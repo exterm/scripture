@@ -1,5 +1,7 @@
-<ul>
-<%= for article <- @articles do %>
-    <li><%= link article.title, to: article_path(@conn, :show, article) %> <small><%= formatted_datetime(article.inserted_at) %> Uhr</small></li>
-<% end %>
-</ul>
+<div id="article-index">
+  <ul>
+    <%= for article <- @articles do %>
+      <li><%= link article.title, to: article_path(@conn, :show, article) %> <small><%= formatted_datetime(article.inserted_at) %> Uhr</small></li>
+      <% end %>
+  </ul>
+</div>
