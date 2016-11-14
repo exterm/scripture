@@ -1,7 +1,7 @@
-<div class="article-show">
+<div id="article-show">
   <article>
     <header>
-      <h2><%= @article.title %></h2>
+      <h2 id="article-title"><%= @article.title %></h2>
     </header>
     <%= {:safe, render_markdown @article.content} %>
   </article>

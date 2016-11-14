@@ -1,5 +1,156 @@
-/* This file is for your main application css. */
+/* general styles */
 
-.article-show article img {
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1em 5em 1em;
+}
+
+
+#content {
+  max-width: 700px;
+  width: 100%;
+}
+
+@media (min-width: 700px) {
+  #content {
+    width: 700px
+  }
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+.h1, h1 {
+  font-size: 36px;
+}
+
+.h2, h2 {
+  font-size: 30px;
+}
+
+/* alerts */
+
+.alert:empty {
+  display: none;
+}
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert {
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+/* forms */
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+form .form-group {
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+form input, form button, form textarea {
+  font: inherit;
+}
+
+form input, form textarea {
+  padding: 0.2em 0.5em; 0.2em 0.5em
+}
+
+form button {
+  max-width: 15em;
+}
+
+form label {
+  font-weight: 600;
+}
+
+/* main header */
+
+#main-header {
+  padding-bottom: 2em;
+}
+
+#main-header h1 {
+  font-family: serif;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 0px
+}
+
+#main-header ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0px;
+  margin: 0px;
+}
+
+#main-header ul li {
+  padding-right: 1em;
+}
+
+/* article show */
+
+#article-show article img {
   max-width: 100%;
+  max-height: 1000px;
+  display:block;
+  margin:auto;
+}
+
+#article-show #article-title {
+  padding-top: 0.5em;
+  padding-bottom: 1em;
+  font-weight: 600;
+}
+
+/* article index */
+
+#article-index ul {
+  list-style: none;
+  padding: 0px;
+}
+
+#article-index ul li {
+  padding-bottom: 0.8em;
 }

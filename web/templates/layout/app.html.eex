@@ -4,39 +4,41 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="TODO">
+    <meta name="author" content="TODO">
 
     <title>Anna und Philips Blog</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
+    <div id="content">
+      <header id="main-header">
         <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
+          <h1>Anna und Philips Blog</h1>
+          <ul>
             <%= if @current_user do %>
               <li>Eingeloggt als <%= @current_user.first_name <> " " <> @current_user.last_name %></li>
+              <li><%= link "Artikel-Übersicht", to: "/" %></li>
               <%= if @current_user.role == "admin" do %>
                 <li><%= link "Admin-Bereich", to: admin_article_path(@conn, :index) %></li>
               <% end %>
             <% end %>
-            <li><%= link "Artikel-Übersicht", to: "/" %></li>
           </ul>
         </nav>
-        <span class="logo"></span>
       </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <p class="alert alert-success" role="alert"><%= get_flash(@conn, :success) %></p>
+      <div>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <p class="alert alert-success" role="alert"><%= get_flash(@conn, :success) %></p>
+      </div>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
+    </div> <!-- /#content -->
 
-    </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
