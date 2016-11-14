@@ -7,7 +7,7 @@
     <meta name="description" content="TODO">
     <meta name="author" content="TODO">
 
-    <title>Anna und Philips Blog</title>
+    <title>Anna und Philips Kanada-Blog</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -15,7 +15,7 @@
     <div id="content">
       <header id="main-header">
         <nav role="navigation">
-          <h1>Anna und Philips Blog</h1>
+          <h1>Anna und Philips Kanada-Blog</h1>
           <ul>
             <%= if @current_user do %>
               <li>Eingeloggt als <%= @current_user.first_name <> " " <> @current_user.last_name %></li>
