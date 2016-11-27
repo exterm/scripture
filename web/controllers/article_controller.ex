@@ -4,7 +4,9 @@ defmodule Scripture.ArticleController do
   alias Scripture.Article
 
   def index(conn, _params) do
-    articles = Repo.all(Article)
+    articles = Article
+      |> Article.published
+      |> Repo.all
     render(conn, "index.html", articles: articles)
   end
 

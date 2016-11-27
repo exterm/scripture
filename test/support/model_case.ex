@@ -22,6 +22,7 @@ defmodule Scripture.ModelCase do
       import Ecto.Changeset
       import Ecto.Query
       import Scripture.ModelCase
+      import Scripture.Fixtures
     end
   end
 

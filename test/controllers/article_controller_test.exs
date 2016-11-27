@@ -6,10 +6,12 @@ defmodule Scripture.ArticleControllerTest do
     {:ok, conn: log_in_as(conn, user)}
   end
 
-  test "lists all entries on index", %{conn: conn} do
+  test "lists all published entries on index", %{conn: conn} do
     article = persist_fixture(:article)
+    unpublished_article = persist_fixture(:article, %{published: false, title: "Draft"})
     conn = get conn, article_path(conn, :index)
     assert html_response(conn, 200) =~ article.title
+    refute html_response(conn, 200) =~ unpublished_article.title
   end
 
   test "shows chosen resource", %{conn: conn} do

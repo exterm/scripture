@@ -1,8 +1,6 @@
 defmodule Scripture.UserTest do
   use Scripture.ModelCase, async: true
 
-  import Scripture.Fixtures
-
   alias Scripture.User
 
   @valid_attrs %{email: "some content", first_name: "some content", last_name: "some content"}
