@@ -15,4 +15,15 @@ defmodule Scripture.ArticleTest do
     changeset = Article.changeset(%Article{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "published query" do
+    _unpublished_article = persist_fixture(:article, %{published: false, title: "Draft"})
+    published_article = persist_fixture(:article)
+
+    articles = Article
+      |> Article.published
+      |> Repo.all
+
+    assert [published_article] == articles
+  end
 end

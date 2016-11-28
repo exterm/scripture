@@ -37,7 +37,8 @@ defmodule Scripture.Fixtures do
 
   def build_fixture(:article, attributes) do
     defaults = %{title: "Die 33 besten Artikel-Headlines",
-                 content: "Buzzfeed hat angerufen."}
+                 content: "Buzzfeed hat angerufen.",
+                 published: true}
     Article.changeset(
       %Article{},
       defaults
