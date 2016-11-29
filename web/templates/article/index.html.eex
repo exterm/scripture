@@ -1,4 +1,5 @@
 <div id="article-index">
+  <h1>Oh, wie schön ist... Kanada?</h1>
   <ul>
     <%= for article <- @articles do %>
       <li><%= link article.title, to: article_path(@conn, :show, article) %> <small><%= formatted_datetime(article.inserted_at) %> Uhr</small></li>

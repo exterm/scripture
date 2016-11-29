@@ -19,3 +19,12 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+
+
+
+// custom stuff!
+
+// special class for image paragraphs
+var imageParagraphs = Array.prototype.slice.call(document.querySelectorAll("#article-show article img"));
+imageParagraphs.map(function(image) {image.parentNode.className += " image-paragraph"})
