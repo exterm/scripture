@@ -1,4 +1,4 @@
-<h2>Show article</h2>
+<h2>Article Preview</h2>
 
 <%= render Scripture.ArticleView, "show.html", %{conn: @conn, article: @article} %>
 

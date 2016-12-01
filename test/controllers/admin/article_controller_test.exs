@@ -34,7 +34,7 @@ defmodule Scripture.Admin.ArticleControllerTest do
   test "shows chosen resource", %{conn: conn} do
     article = persist_fixture(:article)
     conn = get conn, admin_article_path(conn, :show, article)
-    assert html_response(conn, 200) =~ "Show article"
+    assert html_response(conn, 200) =~ "Article Preview"
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
