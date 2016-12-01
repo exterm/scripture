@@ -8,20 +8,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 1em 5em 1em;
+  margin: 0 25px 50px 25px;
 }
 
 
 #content {
   max-width: 700px;
   width: 100%;
-  box-shadow: 0px 0px 30px #eee;
-  padding: 0em 1.5em 1em 1.5em;
   min-height: 85vh;
-  border-radius: 4px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 750px) {
   #content {
     width: 700px
   }
@@ -31,26 +28,6 @@ a {
   color: #337ab7;
   text-decoration: none;
 }
-
-h1, h2, h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: inherit;
-  line-height: 1.1;
-  color: inherit;
-}
-
-h1 {
-  font-size: 40px;
-}
-
-h2 {
-  font-size: 30px;
-}
-
 
 /* alerts */
 
@@ -123,7 +100,7 @@ form span.help-block {
 
 #main-header {
   padding-top: 0.5em;
-  padding-bottom: 2em;
+  padding-bottom: 3em;
 }
 
 #main-header ul {
@@ -162,16 +139,35 @@ form span.help-block {
   margin: 0px;
 }
 
-#article-show #article-title {
-  font-family: "Abril Fatface", serif;
-  font-weight: 400;
-  font-size: 50px;
-}
-
 #article-show footer {
   padding-top: 2em;
 }
 
+#article-show h1, #article-show h2, #article-show h3 {
+  margin-top: 45px;
+}
+
+#article-show h1, #article-show h2, #article-show h3, #article-show h4, #article-show h5, #article-show h6 {
+  font-family: inherit;
+  line-height: 1.1;
+  color: inherit;
+  margin-bottom: 0px;
+}
+
+#article-show h1 {
+  font-size: 40px;
+}
+
+#article-show h2 {
+  font-size: 30px;
+}
+
+#article-show #article-title {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-size: 60px;
+  padding-bottom: 20px;
+}
 
 /* article index */
 
