@@ -24,9 +24,9 @@ defmodule Scripture.Fixtures do
   end
 
   def build_fixture(:admin, attributes) do
-    basic_defaults = %{first_name: "Bernd",
-                       last_name: "Berndes",
-                       email: "bernd@example.com",
+    basic_defaults = %{first_name: "Philip",
+                       last_name: "Müller",
+                       email: "philip@example.com",
                        role: "admin"}
     User.admin_changeset(
       %User{},

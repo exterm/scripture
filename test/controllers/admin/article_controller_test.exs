@@ -12,7 +12,7 @@ defmodule Scripture.Admin.ArticleControllerTest do
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, admin_article_path(conn, :index)
-    assert html_response(conn, 200) =~ "All Blog Articles"
+    assert html_response(conn, 200) =~ "Articles Admin"
   end
 
   test "renders form for new resources", %{conn: conn} do
