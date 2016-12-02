@@ -8,26 +8,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 25px 50px 25px;
+  margin: 0 17px 15px 17px;
 }
 
 
 #content {
   max-width: 700px;
-  width: 100%;
+  width: 700px;
   min-height: 85vh;
-}
-
-@media (min-width: 750px) {
-  #content {
-    width: 700px
-  }
 }
 
 a {
   color: #337ab7;
   text-decoration: none;
 }
+
 
 /* alerts */
 
@@ -155,7 +150,7 @@ form span.help-block {
 }
 
 #article-show h1 {
-  font-size: 40px;
+  font-size: 38px;
 }
 
 #article-show h2 {
@@ -168,6 +163,7 @@ form span.help-block {
   font-size: 60px;
   padding-bottom: 20px;
 }
+
 
 /* article index */
 
@@ -184,4 +180,17 @@ form span.help-block {
   padding-bottom: 0.5em;
   font-family: "Abril Fatface", serif;
   font-weight: 400;
+}
+
+
+/* small screen optimizations */
+
+@media (max-width: 740px) {
+  #content {
+    width: 100%;
+  }
+  #article-show #article-title {
+    font-size: 50px;
+    padding-bottom: 15px;
+  }
 }
