@@ -1,11 +1,10 @@
-<h2>Listing articles</h2>
+<h2>All Blog Articles</h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Published?</th>
+      <th>Titel</th>
+      <th>Veröffentlicht?</th>
 
       <th></th>
     </tr>
@@ -14,13 +13,12 @@
 <%= for article <- @articles do %>
     <tr>
       <td class="article-title"><%= article.title %></td>
-      <td class="article-content"><%= truncate(article.content, 200) %></td>
       <td class="article-published"><%= if article.published, do: "✓", else: "✗" %></td>
 
       <td class="text-right">
-        <%= link "Show", to: admin_article_path(@conn, :show, article), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: admin_article_path(@conn, :edit, article), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: admin_article_path(@conn, :delete, article), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link "Vorschau", to: admin_article_path(@conn, :show, article) %>
+        <%= link "Bearbeiten", to: admin_article_path(@conn, :edit, article) %>
+        <%= link "Löschen", to: admin_article_path(@conn, :delete, article), method: :delete, data: [confirm: "Wirklich löschen?"] %>
       </td>
     </tr>
 <% end %>
