@@ -101,6 +101,10 @@ form input, form textarea, form select {
   padding: 0.2em 0.5em; 0.2em 0.5em
 }
 
+form textarea {
+  min-height: 350px;
+}
+
 form button {
   max-width: 15em;
 }
