@@ -23,6 +23,26 @@ a {
   text-decoration: none;
 }
 
+#main-headline {
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-size: 60px;
+  padding-bottom: 20px;
+}
+
+
+/* small screen optimizations */
+
+@media (max-width: 740px) {
+  #content {
+    width: 100%;
+  }
+  #main-headline {
+    font-size: 50px;
+    padding-bottom: 15px;
+  }
+}
+
 
 /* alerts */
 
@@ -143,25 +163,17 @@ form span.help-block {
 }
 
 #article-show h1, #article-show h2, #article-show h3, #article-show h4, #article-show h5, #article-show h6 {
-  font-family: inherit;
   line-height: 1.1;
   color: inherit;
   margin-bottom: 0px;
 }
 
-#article-show h1 {
+#article-show article > h1 {
   font-size: 38px;
 }
 
-#article-show h2 {
+#article-show article > h2 {
   font-size: 30px;
-}
-
-#article-show #article-title {
-  font-family: "Abril Fatface", serif;
-  font-weight: 400;
-  font-size: 60px;
-  padding-bottom: 20px;
 }
 
 
@@ -174,23 +186,4 @@ form span.help-block {
 
 #article-index ul li {
   padding-bottom: 0.8em;
-}
-
-#article-index h1 {
-  padding-bottom: 0.5em;
-  font-family: "Abril Fatface", serif;
-  font-weight: 400;
-}
-
-
-/* small screen optimizations */
-
-@media (max-width: 740px) {
-  #content {
-    width: 100%;
-  }
-  #article-show #article-title {
-    font-size: 50px;
-    padding-bottom: 15px;
-  }
 }
