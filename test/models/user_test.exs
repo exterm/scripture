@@ -27,7 +27,15 @@ defmodule Scripture.UserTest do
     reader = build_fixture(:user)
     changeset = User.admin_changeset(reader, %{role: "admin"})
 
+    assert changeset.valid?
     assert {:ok, "admin"} = Ecto.Changeset.fetch_change(changeset, :role)
+  end
+
+  test "admin_changeset doesn't change into invalid role" do
+    reader = build_fixture(:user)
+    changeset = User.admin_changeset(reader, %{role: "edwin"})
+
+    refute changeset.valid?
   end
 
   test "generating a new login token" do

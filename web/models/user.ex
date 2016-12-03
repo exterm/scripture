@@ -52,6 +52,7 @@ defmodule Scripture.User do
   defp general_validations(changeset) do
     changeset
     |> validate_required([:first_name, :last_name, :email])
+    |> update_change(:email, &String.downcase/1)
     |> unique_constraint(:email)
     |> unique_constraint(:login_token)
   end

@@ -41,6 +41,7 @@ defmodule Scripture.Router do
     pipe_through [:browser, :admin_authentication]
 
     resources "/articles", ArticleController
+    resources "/users", UserController
   end
 
   if Mix.env == :dev do

@@ -19,11 +19,15 @@
             <%= if @current_user do %>
               <li>Eingeloggt als <%= @current_user.first_name <> " " <> @current_user.last_name %></li>
               <li><%= link "Artikel-Übersicht", to: "/" %></li>
-              <%= if @current_user.role == "admin" do %>
-                <li><%= link "Admin-Bereich", to: admin_article_path(@conn, :index) %></li>
-              <% end %>
             <% end %>
           </ul>
+          <%= if @current_user && @current_user.role == "admin" do %>
+            <ul>
+              <li>Admin:</li>
+              <li><%= link "Artikel", to: admin_article_path(@conn, :index) %></li>
+              <li><%= link "User", to: admin_user_path(@conn, :index) %></li>
+            </ul>
+          <% end %>
         </nav>
       </header>
 
