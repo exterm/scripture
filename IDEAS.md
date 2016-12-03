@@ -2,15 +2,14 @@
 
 - hot code upgrade on deploy (possible with already integrated edeliver)
 
-- Password less login: einfach login link schicken, cookie mit langer Laufzeit setzen (da sollte wohl noch eine checkbox sein, um sessioncookie von ewigem cookie zu unterscheiden)
-  - http://inaka.net/blog/2016/07/27/passwordless-login-with-phoenix
 - roles: https://github.com/vysakh0/exbouncer
-- let admins create articles, users read them
+  - or https://github.com/boydm/policy_wonk
 
 - code style testing with dogma or credo
   - https://github.com/lpil/dogma
   - https://elixirnation.io/libraries/credo-static-code-analysis-for-elixir-language
     - https://github.com/rrrene/credo
+  - SaaS: https://ebertapp.io/
 
 - make travis use dialyzer
 - ignore dialyzer warnings from libraries
