@@ -6,6 +6,7 @@
       <th>Name</th>
       <th>E-Mail Address</th>
       <th>Role</th>
+      <th>Group</th>
 
       <th></th>
     </tr>
@@ -16,6 +17,7 @@
       <td><%= full_name(user) %></td>
       <td><%= user.email %></td>
       <td><%= user.role %></td>
+      <td><%= user.group %></td>
 
       <td class="text-right">
         <%= link "Show", to: admin_user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>

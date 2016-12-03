@@ -26,8 +26,14 @@
 
   <div class="form-group">
     <%= label f, :role, class: "control-label" %>
-    <%= text_input f, :role, class: "form-control" %>
+    <%= select f, :role, Scripture.User.roles, class: "form-control" %>
     <%= error_tag f, :role %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :group, class: "control-label" %>
+    <%= select f, :group, Scripture.User.groups, class: "form-control" %>
+    <%= error_tag f, :group %>
   </div>
 
 

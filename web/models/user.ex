@@ -8,6 +8,7 @@ defmodule Scripture.User do
     field :login_token, :string
     field :login_token_created_at, Ecto.DateTime
     field :role, :string
+    field :group, :string
 
     timestamps()
   end
@@ -31,8 +32,10 @@ defmodule Scripture.User do
           :email,
           :login_token,
           :login_token_created_at,
-          :role])
-    |> validate_inclusion(:role, ["reader", "admin"])
+          :role,
+          :group])
+    |> validate_inclusion(:role, roles)
+    |> validate_inclusion(:group, groups)
     |> general_validations
   end
 
@@ -48,6 +51,9 @@ defmodule Scripture.User do
       login_token_created_at: timestamp
     }
   end
+
+  def roles, do: ["reader", "admin"]
+  def groups, do: ["close family", "family", "friends", "acquaintances"]
 
   defp general_validations(changeset) do
     changeset

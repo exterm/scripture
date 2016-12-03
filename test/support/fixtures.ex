@@ -15,7 +15,8 @@ defmodule Scripture.Fixtures do
     basic_defaults = %{first_name: "Bernd",
                        last_name: "Berndes",
                        email: "bernd@example.com",
-                       role: "reader"}
+                       role: "reader",
+                       group: "acquaintances"}
     User.admin_changeset(
       %User{},
       basic_defaults
@@ -27,7 +28,8 @@ defmodule Scripture.Fixtures do
     basic_defaults = %{first_name: "Philip",
                        last_name: "Müller",
                        email: "philip@example.com",
-                       role: "admin"}
+                       role: "admin",
+                       group: "close family"}
     User.admin_changeset(
       %User{},
       basic_defaults
