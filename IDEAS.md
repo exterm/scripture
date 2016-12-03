@@ -18,3 +18,5 @@
 - render elixir, erlang versions into HTML (only for logged in admins)
 
 - use apache mod_h2 (now called mod_http2) for http 2.0
+
+- dynamic forms http://blog.plataformatec.com.br/2016/09/dynamic-forms-with-phoenix
