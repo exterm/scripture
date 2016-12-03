@@ -38,6 +38,28 @@ defmodule Scripture.UserTest do
     refute changeset.valid?
   end
 
+  test "changeset doesn't change group" do
+    reader = build_fixture(:user)
+    changeset = User.changeset(reader, %{group: "close family"})
+
+    assert {:ok, "acquaintances"} = Ecto.Changeset.fetch_change(changeset, :group)
+  end
+
+  test "admin_changeset does change group" do
+    reader = build_fixture(:user)
+    changeset = User.admin_changeset(reader, %{group: "close family"})
+
+    assert changeset.valid?
+    assert {:ok, "close family"} = Ecto.Changeset.fetch_change(changeset, :group)
+  end
+
+  test "admin_changeset doesn't change into invalid group" do
+    reader = build_fixture(:user)
+    changeset = User.admin_changeset(reader, %{role: "frenemies"})
+
+    refute changeset.valid?
+  end
+
   test "generating a new login token" do
     timestamp = %DateTime{calendar: Calendar.ISO, day: 17, hour: 0, microsecond: {178597, 6},
                           minute: 29, month: 10, second: 58, std_offset: 0, time_zone: "Etc/UTC",

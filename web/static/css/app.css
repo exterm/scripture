@@ -92,12 +92,12 @@ form .form-group {
   flex-direction: column;
 }
 
-form input, form button, form textarea {
+form input, form button, form textarea, form select {
   border-radius: 4px;
   font: inherit;
 }
 
-form input, form textarea {
+form input, form textarea, form select {
   padding: 0.2em 0.5em; 0.2em 0.5em
 }
 
