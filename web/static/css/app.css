@@ -38,6 +38,9 @@ table {
 /* small screen optimizations */
 
 @media (max-width: 740px) {
+  body {
+    font-size: 18px;
+  }
   #content {
     width: 100%;
   }
