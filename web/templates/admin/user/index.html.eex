@@ -1,5 +1,7 @@
 <h2>Users Admin</h2>
 
+<%= link "New user", to: admin_user_path(@conn, :new) %>
+
 <table class="table">
   <thead>
     <tr>
@@ -28,5 +30,3 @@
 <% end %>
   </tbody>
 </table>
-
-<%= link "New user", to: admin_user_path(@conn, :new) %>
