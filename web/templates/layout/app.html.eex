@@ -17,7 +17,7 @@
         <nav role="navigation">
           <ul>
             <%= if @current_user do %>
-              <li>Eingeloggt als <%= @current_user.first_name <> " " <> @current_user.last_name %></li>
+              <li>Eingeloggt als <%= full_name(@current_user) %></li>
               <li><%= link "Artikel-Übersicht", to: "/" %></li>
             <% end %>
           </ul>

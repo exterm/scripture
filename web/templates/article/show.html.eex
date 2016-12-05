@@ -1,9 +1,9 @@
 <div id="article-show">
   <article>
-    <header>
-      <h1 id="main-headline"><%= @article.title %></h1>
-    </header>
-    <%= {:safe, render_markdown @article.content} %>
+    <%= render("header.html", article: @article) %>
+    <a href="#comments-headline"><%= length(@article.comments) %> Kommentare</a>
+    <%= render("body.html", article: @article) %>
+    <%= render(Scripture.CommentView, "section.html", conn: @conn, article: @article, comment_changeset: @comment_changeset) %>
   </article>
   <footer>
     <%= link "Zurück zur Übersicht", to: article_path(@conn, :index) %>

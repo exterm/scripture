@@ -1,4 +1,4 @@
-defmodule Scripture.Acceptance.ArticlesTest do
+defmodule Scripture.Acceptance.ArticleTest do
   use Scripture.AcceptanceCase, async: true
 
   setup %{session: session} do

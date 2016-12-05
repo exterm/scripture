@@ -26,4 +26,25 @@ defmodule Scripture.ArticleTest do
 
     assert [published_article] == articles
   end
+
+  test "with_comments method" do
+    user = persist_fixture(:user)
+    article = persist_fixture(:article)
+    persist_fixture(:comment, %{user_id: user.id, article_id: article.id})
+
+    resulting_article = Repo.get!(Article.with_comments, article.id)
+    assert nil != List.first(resulting_article.comments).user
+  end
+
+  test "deleting an article also deletes its comments" do
+    user = persist_fixture(:user)
+    article = persist_fixture(:article)
+    comment = persist_fixture(:comment, %{user_id: user.id, article_id: article.id})
+
+    assert comment == Repo.get(Scripture.Comment, comment.id)
+
+    Repo.delete!(article)
+
+    assert nil == Repo.get(Scripture.Comment, comment.id)
+  end
 end
