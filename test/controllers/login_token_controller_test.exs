@@ -17,7 +17,7 @@ defmodule Scripture.LoginTokenControllerTest do
     assert redirected_to(conn) == login_token_path(conn, :success)
 
     conn = get conn, redirected_to(conn)
-    assert html_response(conn, 200) =~ "Login-Link an #{user.email} gesendet."
+    assert html_response(conn, 200) =~ "Login-Link an #{user.email}"
 
     changed_user = Repo.get!(User, user.id)
     assert changed_user.login_token != user.login_token

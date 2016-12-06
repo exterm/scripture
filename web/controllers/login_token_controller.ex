@@ -17,7 +17,7 @@ defmodule Scripture.LoginTokenController do
         create_and_send_token(user)
 
         conn
-        |> put_flash(:success, "Login-Link an #{form_params["email"]} gesendet.")
+        |> put_flash(:success, "Du solltest innerhalb weniger Sekunden eine Email mit einem Login-Link an #{form_params["email"]} bekommen. Um dich einzuloggen, klicke einfach auf den Link in der Email.")
         |> redirect(to: "/login_token_created")
     end
   end
