@@ -6,7 +6,6 @@ defmodule Scripture.AcceptanceCase do
       use Wallaby.DSL
       use Scripture.AcceptanceHelper
 
-      import Ecto.Model
       import Ecto.Query, only: [from: 2]
       import Scripture.Router.Helpers
       import Scripture.Fixtures
