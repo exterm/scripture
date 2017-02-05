@@ -1,6 +1,7 @@
 # IDEAS
 
 
+- use ssl via letsencrypt
 - hot code upgrade on deploy (possible with already integrated edeliver)
 
 - roles: https://github.com/vysakh0/exbouncer
