@@ -3,7 +3,7 @@ defmodule Scripture.ExceptionReporter do
     headers_map = Map.new(conn.req_headers)
                   |> Map.delete("x-forwarded-for")
     %{
-      framework: "phoenix " <> phoenix_version,
+      framework: "phoenix " <> phoenix_version(),
       request: %{
         url: build_url(conn, headers_map),
         method: conn.method,

@@ -34,8 +34,8 @@ defmodule Scripture.User do
           :login_token_created_at,
           :role,
           :group])
-    |> validate_inclusion(:role, roles)
-    |> validate_inclusion(:group, groups)
+    |> validate_inclusion(:role, roles())
+    |> validate_inclusion(:group, groups())
     |> general_validations
   end
 

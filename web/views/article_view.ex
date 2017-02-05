@@ -6,7 +6,7 @@ defmodule Scripture.ArticleView do
   def render_markdown(text) do
     text
     |> fix_dropbox_image_urls
-    |> Earmark.to_html
+    |> Earmark.as_html!
   end
 
   defp fix_dropbox_image_urls(text) do

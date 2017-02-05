@@ -2,7 +2,7 @@ defmodule Scripture.UserEmail do
   use Phoenix.Swoosh, view: Scripture.EmailView, layout: {Scripture.LayoutView, :email}
 
   def login_token(user) do
-    new
+    new()
     |> to({user.first_name <> " " <> user.last_name, user.email})
     |> from({"Anna und Philip", "blog@annaundphilip.info"})
     |> subject("Login bei Anna und Philips Blog")
