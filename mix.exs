@@ -3,7 +3,7 @@ defmodule Scripture.Mixfile do
 
   def project do
     [app: :scripture,
-     version: "1.0.5",
+     version: "1.0.6",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
