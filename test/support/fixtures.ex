@@ -4,6 +4,7 @@ defmodule Scripture.Fixtures do
 
   alias Scripture.User
   alias Scripture.Article
+  alias Scripture.Comment
 
   def persist_fixture(name, attributes \\ %{}) do
     Repo.insert!(build_fixture(name, attributes))
@@ -43,6 +44,16 @@ defmodule Scripture.Fixtures do
                  published: true}
     Article.changeset(
       %Article{},
+      defaults
+      |> Map.merge(attributes))
+  end
+
+  def build_fixture(:comment, attributes) do
+    defaults = %{message: "Best article evar",
+                 user_id: 1,
+                 article_id: 1}
+    Comment.changeset(
+      %Comment{},
       defaults
       |> Map.merge(attributes))
   end

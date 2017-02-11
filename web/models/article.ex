@@ -5,6 +5,7 @@ defmodule Scripture.Article do
     field :title, :string
     field :content, :string
     field :published, :boolean
+    has_many :comments, Scripture.Comment, on_delete: :delete_all
 
     timestamps()
   end
@@ -19,8 +20,12 @@ defmodule Scripture.Article do
   end
 
   # https://blog.drewolson.org/composable-queries-ecto/
-  def published(query) do
+  def published(query \\ Scripture.Article) do
     from a in query,
     where: a.published
+  end
+
+  def with_comments(query \\ Scripture.Article) do
+    from q in query, preload: [comments: :user]
   end
 end

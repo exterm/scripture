@@ -23,6 +23,10 @@ a {
   text-decoration: none;
 }
 
+a.delete {
+  color: #a94442;
+}
+
 table {
   width: 100%
 }
@@ -90,7 +94,6 @@ th {
 form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1em;
 }
 
 form .form-group {
@@ -146,6 +149,25 @@ form span.help-block {
 }
 
 
+/* footer */
+
+footer {
+  margin-top: 1em;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0px;
+  margin: 0px;
+}
+
+footer ul li {
+  padding-right: 1em;
+}
+
+
 /* article show */
 
 #article-show article img {
@@ -163,14 +185,14 @@ form span.help-block {
   color: rgba(0,0,0,.6);
 }
 
-#article-show article p,
+#article-show article > p,
 #article-show article ul {
   padding-top: 29px;
   margin: 0px;
 }
 
 #article-show footer {
-  padding-top: 2em;
+  padding-top: 1em;
 }
 
 #article-show h1, #article-show h2, #article-show h3 {
@@ -201,4 +223,38 @@ form span.help-block {
 
 #article-index ul li {
   padding-bottom: 0.8em;
+}
+
+
+/* comments - reader interface */
+
+#comments-section .comment-header {
+  font-size: 15px;
+}
+
+#comments-section .comment-header span.author {
+  font-weight: 700;
+}
+
+#comments-section .comment-header span.timestamp {
+  color: rgba(0,0,0,.6);
+}
+
+#comments-section article {
+  margin-top: 1em;
+}
+
+#comments-section article p {
+  padding-top: 0;
+  white-space: pre-line;
+}
+
+#comments-section article footer {
+  margin-top: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+#comments-section textarea {
+  min-height: 100px;
 }

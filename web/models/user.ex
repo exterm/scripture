@@ -9,6 +9,7 @@ defmodule Scripture.User do
     field :login_token_created_at, Ecto.DateTime
     field :role, :string
     field :group, :string
+    has_many :comments, Scripture.Comment
 
     timestamps()
   end

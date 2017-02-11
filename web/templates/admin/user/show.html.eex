@@ -19,5 +19,9 @@
   </li>
 </ul>
 
-<%= link "Edit", to: admin_user_path(@conn, :edit, @user) %>
-<%= link "Back", to: admin_user_path(@conn, :index) %>
+<footer>
+  <ul>
+    <li><%= link "Edit", to: admin_user_path(@conn, :edit, @user) %></li>
+    <li><%= link "Back", to: admin_user_path(@conn, :index) %></li>
+  </ul>
+</footer>

@@ -34,6 +34,9 @@ defmodule Scripture.Router do
 
     get "/", ArticleController, :index
     get "/articles/:id", ArticleController, :show
+
+    post "/comments", CommentController, :create
+    delete "/comments/:id", CommentController, :delete
   end
 
   # admin routes
