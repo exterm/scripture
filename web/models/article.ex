@@ -20,7 +20,7 @@ defmodule Scripture.Article do
   end
 
   # https://blog.drewolson.org/composable-queries-ecto/
-  def published(query) do
+  def published(query \\ Scripture.Article) do
     from a in query,
     where: a.published
   end

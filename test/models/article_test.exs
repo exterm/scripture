@@ -20,9 +20,7 @@ defmodule Scripture.ArticleTest do
     _unpublished_article = persist_fixture(:article, %{published: false, title: "Draft"})
     published_article = persist_fixture(:article)
 
-    articles = Article
-      |> Article.published
-      |> Repo.all
+    articles = Repo.all(Article.published)
 
     assert [published_article] == articles
   end

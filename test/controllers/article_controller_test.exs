@@ -22,6 +22,14 @@ defmodule Scripture.ArticleControllerTest do
     assert html_response(conn, 200) =~ comment.message
   end
 
+  test "doesn't show unpublished article", %{conn: conn} do
+    article = persist_fixture(:article, %{published: false})
+
+    assert_raise Ecto.NoResultsError, fn ->
+      get conn, article_path(conn, :show, article)
+    end
+  end
+
   test "renders page not found when id is nonexistent", %{conn: conn} do
     assert_error_sent 404, fn ->
       get conn, article_path(conn, :show, -1)
