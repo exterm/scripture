@@ -45,7 +45,7 @@ defmodule Scripture.Mixfile do
      {:distillery, ">= 0.8.0", warn_missing: false}, # as per edeliver docs
      {:phoenix_swoosh, "~> 0.1"}, # emails - restriction as per docs
      {:earmark, "> 0.0.0"}, # markdown support
-     {:calendar, "~> 0.16.1"}, # fully featured dates and times
+     {:calendar, "~> 0.17"}, # fully featured dates and times
     ]
   end
 
