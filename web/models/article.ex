@@ -22,7 +22,8 @@ defmodule Scripture.Article do
   # https://blog.drewolson.org/composable-queries-ecto/
   def published(query \\ Scripture.Article) do
     from a in query,
-    where: a.published
+      where: a.published,
+      order_by: [desc: :updated_at]
   end
 
   def with_comments(query \\ Scripture.Article) do

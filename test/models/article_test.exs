@@ -18,11 +18,12 @@ defmodule Scripture.ArticleTest do
 
   test "published query" do
     _unpublished_article = persist_fixture(:article, %{published: false, title: "Draft"})
-    published_article = persist_fixture(:article)
+    first_published_article = persist_fixture(:article)
+    second_published_article = persist_fixture(:article)
 
     articles = Repo.all(Article.published)
 
-    assert [published_article] == articles
+    assert [second_published_article, first_published_article] == articles
   end
 
   test "with_comments method" do
