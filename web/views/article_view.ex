@@ -10,6 +10,6 @@ defmodule Scripture.ArticleView do
   end
 
   defp fix_dropbox_image_urls(text) do
-    String.replace(text, "//www.dropbox.com/", "//dl.dropboxusercontent.com/")
+    String.replace(text, "//www.dropbox.com/s/", "//dl.dropboxusercontent.com/s/")
   end
 end
