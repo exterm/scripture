@@ -16,10 +16,10 @@ defmodule Scripture.ArticleViewTest do
     assert render_markdown(entered_string) == target_string
   end
 
-  test "don't change dropbox gallery urls when rendering markdown" do
+  test "don't change dropbox gallery urls when rendering markdown but open in new tab" do
     entered_string = "[a cool gallery](https://www.dropbox.com/sc/euu7r9v4y12my7a/AADFZagCxyBWhfxooO2ZhErWa)"
-    target_string = "<p><a href=\"https://www.dropbox.com/sc/euu7r9v4y12my7a/AADFZagCxyBWhfxooO2ZhErWa\"" <>
-                    ">a cool gallery</a></p>\n"
+    target_string = "<p><a href=\"https://www.dropbox.com/sc/euu7r9v4y12my7a/AADFZagCxyBWhfxooO2ZhErWa\" " <>
+                    "target='_blank'>a cool gallery</a></p>\n"
 
     assert render_markdown(entered_string) == target_string
   end
