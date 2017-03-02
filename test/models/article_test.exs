@@ -3,16 +3,13 @@ defmodule Scripture.ArticleTest do
 
   alias Scripture.Article
 
-  @valid_attrs %{content: "some content", title: "some content"}
-  @invalid_attrs %{}
-
   test "changeset with valid attributes" do
-    changeset = Article.changeset(%Article{}, @valid_attrs)
+    changeset = Article.changeset(%Article{}, fixture_defaults(Article))
     assert changeset.valid?
   end
 
   test "changeset with invalid attributes" do
-    changeset = Article.changeset(%Article{}, @invalid_attrs)
+    changeset = Article.changeset(%Article{}, %{})
     refute changeset.valid?
   end
 
@@ -45,5 +42,43 @@ defmodule Scripture.ArticleTest do
     Repo.delete!(article)
 
     assert nil == Repo.get(Scripture.Comment, comment.id)
+  end
+
+  test "published? function" do
+    published_article = persist_fixture(Article)
+    unpublished_article = persist_fixture(Article, %{published: false})
+
+    assert Article.published?(published_article)
+    refute Article.published?(unpublished_article)
+  end
+
+  test "set_published_at should set published_at for new published article" do
+    changeset = Ecto.Changeset.change(%Article{}, %{published: true})
+    new_changeset = Article.published_to_published_at(changeset, timestamp())
+    assert timestamp() == new_changeset.changes.published_at
+  end
+
+  test "set_published_at should set published_at when publishing existing article" do
+    changeset = Ecto.Changeset.change(build_fixture(Article, %{published: false}), %{published: true})
+    new_changeset = Article.published_to_published_at(changeset, timestamp())
+    assert timestamp() == new_changeset.changes.published_at
+  end
+
+  test "set_published_at should not change published_at when editing published article" do
+    changeset = Ecto.Changeset.change(build_fixture(Article), %{published: true})
+    new_changeset = Article.published_to_published_at(changeset, timestamp())
+    assert :no_key == Map.get(new_changeset.changes, :published_at, :no_key)
+  end
+
+  test "set_published_at should reset published_at when unpublishing existing article" do
+    changeset = Ecto.Changeset.change(build_fixture(Article), %{published: false})
+    new_changeset = Article.published_to_published_at(changeset, timestamp())
+    assert nil == Map.get(new_changeset.changes, :published_at, :no_key)
+  end
+
+  defp timestamp do
+    %DateTime{calendar: Calendar.ISO, day: 17, hour: 0, microsecond: {178597, 6},
+              minute: 29, month: 10, second: 58, std_offset: 0, time_zone: "Etc/UTC",
+              utc_offset: 0, year: 2016, zone_abbr: "UTC"}
   end
 end

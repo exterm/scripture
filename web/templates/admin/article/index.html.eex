@@ -15,7 +15,7 @@
 <%= for article <- @articles do %>
     <tr>
       <td class="article-title"><%= article.title %></td>
-      <td class="article-published"><%= if article.published, do: "✓", else: "✗" %></td>
+      <td class="article-published"><%= if published?(article), do: "✓", else: "✗" %></td>
 
       <td class="text-right">
         <%= link "Vorschau", to: admin_article_path(@conn, :show, article) %>
