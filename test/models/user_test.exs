@@ -17,44 +17,45 @@ defmodule Scripture.UserTest do
   end
 
   test "changeset doesn't change role" do
-    reader = build_fixture(:user)
+    reader = build_fixture(User)
     changeset = User.changeset(reader, %{role: "admin"})
 
-    assert {:ok, "reader"} = Ecto.Changeset.fetch_change(changeset, :role)
+    assert changeset.valid?
+    assert :error == Ecto.Changeset.fetch_change(changeset, :role)
   end
 
   test "admin_changeset does change role" do
-    reader = build_fixture(:user)
+    reader = build_fixture(User)
     changeset = User.admin_changeset(reader, %{role: "admin"})
 
     assert changeset.valid?
-    assert {:ok, "admin"} = Ecto.Changeset.fetch_change(changeset, :role)
+    assert {:ok, "admin"} == Ecto.Changeset.fetch_change(changeset, :role)
   end
 
   test "admin_changeset doesn't change into invalid role" do
-    reader = build_fixture(:user)
+    reader = build_fixture(User)
     changeset = User.admin_changeset(reader, %{role: "edwin"})
 
     refute changeset.valid?
   end
 
   test "changeset doesn't change group" do
-    reader = build_fixture(:user)
+    reader = build_fixture(User)
     changeset = User.changeset(reader, %{group: "close family"})
 
-    assert {:ok, "acquaintances"} = Ecto.Changeset.fetch_change(changeset, :group)
+    assert :error == Ecto.Changeset.fetch_change(changeset, :group)
   end
 
   test "admin_changeset does change group" do
-    reader = build_fixture(:user)
+    reader = build_fixture(User)
     changeset = User.admin_changeset(reader, %{group: "close family"})
 
     assert changeset.valid?
-    assert {:ok, "close family"} = Ecto.Changeset.fetch_change(changeset, :group)
+    assert {:ok, "close family"} == Ecto.Changeset.fetch_change(changeset, :group)
   end
 
   test "admin_changeset doesn't change into invalid group" do
-    reader = build_fixture(:user)
+    reader = build_fixture(User)
     changeset = User.admin_changeset(reader, %{role: "frenemies"})
 
     refute changeset.valid?

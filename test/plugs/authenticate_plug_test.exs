@@ -3,6 +3,8 @@ defmodule Scripture.AuthenticatePlugTest do
 
   @opts Scripture.AuthenticatePlug.init("admin")
 
+  alias Scripture.User
+
   test "denies access if no logged in user" do
     conn = browser_conn()
     |> get("/admin/articles")
@@ -15,7 +17,7 @@ defmodule Scripture.AuthenticatePlugTest do
   test "denies access if unauthorized user" do
     conn = browser_conn()
     |> get("/admin/articles")
-    |> log_in_as(persist_fixture(:user))
+    |> log_in_as(persist_fixture(User))
     |> Scripture.AuthenticatePlug.call(@opts)
 
     assert conn.status == 403
@@ -25,7 +27,7 @@ defmodule Scripture.AuthenticatePlugTest do
   test "does not halt connection if logged in authorized user" do
     conn = browser_conn()
       |> get("/")
-      |> log_in_as(persist_fixture(:admin))
+      |> log_in_as(persist_fixture(User, :admin))
       |> Scripture.AuthenticatePlug.call(@opts)
 
     assert conn.status == nil # no answer yet

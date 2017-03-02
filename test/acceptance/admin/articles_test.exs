@@ -1,8 +1,10 @@
 defmodule Scripture.Acceptance.Admin.ArticlesTest do
   use Scripture.AcceptanceCase, async: true
 
+  alias Scripture.User
+
   setup %{session: session} do
-    user = persist_fixture(:admin)
+    user = persist_fixture(User, :admin)
     {:ok, session: log_in_as(session, user)}
   end
 

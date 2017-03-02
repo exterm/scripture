@@ -1,6 +1,8 @@
 defmodule Scripture.Acceptance.LoginTest do
   use Scripture.AcceptanceCase, async: true
 
+  alias Scripture.User
+
   test "login flow part 1: redirect", %{session: session} do
     body = session
       |> visit("/")
@@ -19,7 +21,7 @@ defmodule Scripture.Acceptance.LoginTest do
   end
 
   test "login flow part 2: logging in", %{session: session} do
-    user = persist_fixture(:user)
+    user = persist_fixture(User)
     log_in_as(session, user)
   end
 
