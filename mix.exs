@@ -18,9 +18,7 @@ defmodule Scripture.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Scripture, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :phoenix_swoosh, :rollbax, :edeliver, :earmark,
-                    :calendar]]
+     extra_applications: [:logger]]
   end
 
   # Specifies which paths to compile per environment.
