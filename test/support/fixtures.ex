@@ -2,9 +2,7 @@
 defmodule Scripture.Fixtures do
   alias Scripture.Repo
 
-  alias Scripture.User
-  alias Scripture.Article
-  alias Scripture.Comment
+  alias Scripture.{User, Article, Comment}
 
   def build_fixture(module) do
     build_fixture(module, %{})
