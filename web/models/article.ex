@@ -25,7 +25,7 @@ defmodule Scripture.Article do
   def published(query \\ Scripture.Article) do
     from a in query,
       where: not(is_nil(a.published_at)),
-      order_by: [desc: :updated_at]
+      order_by: [desc: :published_at]
   end
 
   def with_comments(query \\ Scripture.Article) do
