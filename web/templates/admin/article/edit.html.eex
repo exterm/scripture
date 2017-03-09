@@ -1,6 +1,7 @@
 <h2>Edit article</h2>
 
 <%= render "form.html", changeset: @changeset,
+                        published?: published?(@article),
                         action: admin_article_path(@conn, :update, @article) %>
 
 <footer>

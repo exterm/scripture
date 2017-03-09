@@ -21,7 +21,7 @@
 
   <div class="form-group">
     <%= label f, :published, class: "control-label" %>
-    <%= checkbox f, :published, class: "form-control" %>
+    <%= checkbox f, :published, value: @published?, class: "form-control" %>
     <%= error_tag f, :published %>
   </div>
 

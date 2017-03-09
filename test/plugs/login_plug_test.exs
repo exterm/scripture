@@ -3,8 +3,10 @@ defmodule Scripture.LoginPlugTest do
 
   @opts Scripture.LoginPlug.init([])
 
+  alias Scripture.User
+
   setup do
-    {:ok, user: persist_fixture(:user)}
+    {:ok, user: persist_fixture(User)}
   end
 
   test "current_user is nil if no logged in user and login impossible" do

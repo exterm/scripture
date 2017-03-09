@@ -11,7 +11,7 @@ defmodule Scripture.LoginTokenControllerTest do
   end
 
   test "creates login token, sends email and redirects when user exists", %{conn: conn} do
-    user = persist_fixture(:user)
+    user = persist_fixture(User)
 
     conn = post conn, login_token_path(conn, :create), login_token_create: %{email: user.email}
     assert redirected_to(conn) == login_token_path(conn, :success)

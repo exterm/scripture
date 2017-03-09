@@ -1,13 +1,15 @@
 defmodule Scripture.Acceptance.ArticleTest do
   use Scripture.AcceptanceCase, async: true
 
+  alias Scripture.{User, Article}
+
   setup %{session: session} do
-    user = persist_fixture(:user)
+    user = persist_fixture(User)
     {:ok, session: log_in_as(session, user)}
   end
 
   test "read article", %{session: session} do
-    article = persist_fixture(:article, %{content: "### Headline\n*emphasis*"})
+    article = persist_fixture(Article, %{content: "### Headline\n*emphasis*"})
 
     session
     |> visit("/articles/#{article.id}")

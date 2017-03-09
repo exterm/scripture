@@ -43,10 +43,7 @@ defmodule Scripture.User do
   @doc """
   Generates a new login token
   """
-  def new_login_token() do
-    new_login_token(DateTime.utc_now())
-  end
-  def new_login_token(timestamp) do
+  def new_login_token(timestamp \\ DateTime.utc_now()) do
     %{
       login_token: :crypto.hash(:sha512, to_string(timestamp)) |> Base.encode16,
       login_token_created_at: timestamp

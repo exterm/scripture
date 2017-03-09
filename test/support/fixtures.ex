@@ -2,59 +2,69 @@
 defmodule Scripture.Fixtures do
   alias Scripture.Repo
 
-  alias Scripture.User
-  alias Scripture.Article
-  alias Scripture.Comment
+  alias Scripture.{User, Article, Comment}
 
-  def persist_fixture(name, attributes \\ %{}) do
-    Repo.insert!(build_fixture(name, attributes))
+  def build_fixture(module) do
+    build_fixture(module, %{})
+  end
+  def build_fixture(module, key) when is_atom(key) do
+    build_fixture(module, key, %{})
+  end
+  def build_fixture(module, params) do
+    build_fixture(module, module, params)
+  end
+  def build_fixture(module, fixture_name, params) do
+    changeset = fixture_changeset(module, Map.merge(fixture_defaults(fixture_name), params))
+    Map.merge(module.__struct__, changeset.changes)
   end
 
-  def build_fixture(name, attributes \\ %{})
+  def persist_fixture(module) do
+    persist_fixture(module, %{})
+  end
+  def persist_fixture(module, key) when is_atom(key) do
+    persist_fixture(module, key, %{})
+  end
+  def persist_fixture(module, params) do
+    persist_fixture(module, module, params)
+  end
+  def persist_fixture(module, fixture_name, params) do
+    changeset = fixture_changeset(module, Map.merge(fixture_defaults(fixture_name), params))
+    Repo.insert!(changeset)
+  end
 
-  def build_fixture(:user, attributes) do
+  def fixture_defaults(User) do
     basic_defaults = %{first_name: "Bernd",
                        last_name: "Berndes",
                        email: "bernd@example.com",
                        role: "reader",
                        group: "acquaintances"}
-    User.admin_changeset(
-      %User{},
-      basic_defaults
-      |> Map.merge(User.new_login_token)
-      |> Map.merge(attributes))
+    Map.merge(basic_defaults, User.new_login_token)
   end
-
-  def build_fixture(:admin, attributes) do
+  def fixture_defaults(:admin) do
     basic_defaults = %{first_name: "Philip",
-                       last_name: "Müller",
-                       email: "philip@example.com",
-                       role: "admin",
-                       group: "close family"}
-    User.admin_changeset(
-      %User{},
-      basic_defaults
-      |> Map.merge(User.new_login_token)
-      |> Map.merge(attributes))
+      last_name: "Müller",
+      email: "philip@example.com",
+      role: "admin",
+      group: "close family"}
+    Map.merge(basic_defaults, User.new_login_token)
+  end
+  def fixture_defaults(Article) do
+    %{title: "Die 33 besten Artikel-Headlines",
+      content: "Buzzfeed hat angerufen.",
+      published: true}
+  end
+  def fixture_defaults(Comment) do
+    %{message: "Best article evar",
+      user_id: 1,
+      article_id: 1}
   end
 
-  def build_fixture(:article, attributes) do
-    defaults = %{title: "Die 33 besten Artikel-Headlines",
-                 content: "Buzzfeed hat angerufen.",
-                 published: true}
-    Article.changeset(
-      %Article{},
-      defaults
-      |> Map.merge(attributes))
-  end
+  # private
 
-  def build_fixture(:comment, attributes) do
-    defaults = %{message: "Best article evar",
-                 user_id: 1,
-                 article_id: 1}
-    Comment.changeset(
-      %Comment{},
-      defaults
-      |> Map.merge(attributes))
+  defp fixture_changeset(module, params) do
+    case module do
+      User -> User.admin_changeset(module.__struct__, params)
+      _    -> module.changeset(module.__struct__, params)
+    end
   end
 end
