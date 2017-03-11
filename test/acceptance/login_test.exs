@@ -4,7 +4,8 @@ defmodule Scripture.Acceptance.LoginTest do
   alias Scripture.User
 
   test "login flow part 1: redirect", %{session: session} do
-    body = session
+    body =
+      session
       |> visit("/")
       |> find("body")
 
@@ -22,7 +23,16 @@ defmodule Scripture.Acceptance.LoginTest do
 
   test "login flow part 2: logging in", %{session: session} do
     user = persist_fixture(User)
-    log_in_as(session, user)
+
+    body =
+      session
+      |> visit(Scripture.EmailView.login_link(user.login_token, "/"))
+      |> find("body")
+
+    # no redirect
+    assert get_current_path(body) == "/"
+
+    assert_text(body, "Oh, wie schön ist")
   end
 
 end

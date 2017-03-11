@@ -7,6 +7,8 @@
       <%= email_input f, :email, class: "form-control" %>
     </div>
 
+    <%= hidden_input f, :requested_path, value: assigns[:requested_path], class: "form-control" %>
+
     <div class="form-group">
       <%= submit "Sende mir einen Login-Link", class: "btn btn-primary" %>
     </div>

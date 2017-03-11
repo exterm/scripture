@@ -10,8 +10,9 @@ defmodule Scripture.AuthenticatePlugTest do
     |> get("/admin/articles")
     |> Scripture.AuthenticatePlug.call(@opts)
 
-    assert conn.status == 403
+    assert html_response(conn, 403) =~ "value=\"/admin/articles\"" # hidden field with requested path
     assert String.contains?(get_flash(conn, :info), "Bitte logge dich ein")
+
   end
 
   test "denies access if unauthorized user" do

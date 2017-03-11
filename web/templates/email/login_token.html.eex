@@ -1,5 +1,5 @@
 <div>
-  <span>Du kannst dich jetzt <a href="<%= article_url(Scripture.Endpoint, :index) <> "?login_token=" <> @token %>">einloggen</a>!</span>
+  <span>Du kannst dich jetzt <a href="<%= login_link(@token, @requested_path) %>">einloggen</a>!</span>
   <br/><br/>
   <span>Dieser Link ist nur für begrenzte Zeit gültig. Du kannst Dir aber jederzeit einen neuen schicken lassen.</span>
 </div>
