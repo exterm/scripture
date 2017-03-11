@@ -18,7 +18,7 @@ defmodule Scripture.AuthenticatePlug do
         |> put_status(403)
         |> Phoenix.Controller.put_flash(:info, "Bitte logge dich ein, um auf diese Seite zuzugreifen.")
         |> Phoenix.Controller.put_layout({Scripture.LayoutView, "app.html"})
-        |> Phoenix.Controller.render(Scripture.LoginTokenView, :new)
+        |> Phoenix.Controller.render(Scripture.LoginTokenView, :new, requested_path: conn.request_path)
         |> halt
       _other -> # user doesn't have an allowed role
         conn

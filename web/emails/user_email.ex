@@ -3,11 +3,11 @@ defmodule Scripture.UserEmail do
 
   import Scripture.UserView, only: [full_name: 1]
 
-  def login_token(user) do
+  def login_token(user, requested_path) do
     new()
     |> to({full_name(user), user.email})
     |> from({"Anna und Philip", "blog@annaundphilip.info"})
     |> subject("Login bei Anna und Philips Blog")
-    |> render_body("login_token.html", %{token: user.login_token})
+    |> render_body("login_token.html", %{token: user.login_token, requested_path: requested_path})
   end
 end

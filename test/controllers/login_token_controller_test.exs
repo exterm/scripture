@@ -13,7 +13,7 @@ defmodule Scripture.LoginTokenControllerTest do
   test "creates login token, sends email and redirects when user exists", %{conn: conn} do
     user = persist_fixture(User)
 
-    conn = post conn, login_token_path(conn, :create), login_token_create: %{email: user.email}
+    conn = post conn, login_token_path(conn, :create), login_token_create: %{email: user.email, requested_path: "/some/path"}
     assert redirected_to(conn) == login_token_path(conn, :success)
 
     conn = get conn, redirected_to(conn)
@@ -21,7 +21,7 @@ defmodule Scripture.LoginTokenControllerTest do
 
     changed_user = Repo.get!(User, user.id)
     assert changed_user.login_token != user.login_token
-    assert_email_sent Scripture.UserEmail.login_token(changed_user)
+    assert_email_sent Scripture.UserEmail.login_token(changed_user, "/some/path")
   end
 
   test "does not create login token and renders error when user not found", %{conn: conn} do

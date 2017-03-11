@@ -1,6 +1,6 @@
 defmodule Scripture.LoginTokenController do
   use Scripture.Web, :controller
-  import Scripture.LoginTokenService, only: [create_and_send_token: 1]
+  import Scripture.LoginTokenService, only: [create_and_send_token: 2]
   alias Scripture.User
 
   def new(conn, _params) do
@@ -14,7 +14,7 @@ defmodule Scripture.LoginTokenController do
         |> put_flash(:error, "Ich kenne keinen Nutzer mit dieser E-Mail-Adresse.")
         |> render("new.html")
       user ->
-        create_and_send_token(user)
+        create_and_send_token(user, form_params["requested_path"])
 
         conn
         |> put_flash(:success, "Du solltest innerhalb weniger Sekunden eine Email mit einem Login-Link an #{form_params["email"]} bekommen. Um dich einzuloggen, klicke einfach auf den Link in der Email.")
