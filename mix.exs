@@ -9,6 +9,7 @@ defmodule Scripture.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     dialyzer: [plt_add_deps: :transitive],
      aliases: aliases(),
      deps: deps()]
   end
@@ -44,6 +45,7 @@ defmodule Scripture.Mixfile do
      {:phoenix_swoosh, "~> 0.1"}, # emails - restriction as per docs
      {:earmark, "> 0.0.0"}, # markdown support
      {:calendar, "~> 0.17"}, # fully featured dates and times
+     {:dialyxir, "~> 0.5", only: [:dev]}, # type checking!
     ]
   end
 
