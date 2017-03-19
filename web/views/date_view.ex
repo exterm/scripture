@@ -3,6 +3,7 @@ defmodule Scripture.DateView do
 
   alias Calendar.DateTime
 
+  @spec formatted_datetime(DateTime.t, String.t) :: String.t
   def formatted_datetime(naive_date_time, target_timezone \\ "CET") do
     {:ok, utc_date_time} = DateTime.from_naive(naive_date_time, "UTC")
     {:ok, date_time} = DateTime.shift_zone(utc_date_time, target_timezone)
