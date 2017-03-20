@@ -1,12 +1,14 @@
 defmodule Scripture.Article do
   use Scripture.Web, :model
 
+  alias Scripture.Comment
+
   schema "articles" do
     field :title, :string
     field :content, :string
     field :published, :boolean, virtual: true
     field :published_at, :utc_datetime
-    has_many :comments, Scripture.Comment, on_delete: :delete_all
+    has_many :comments, Comment, on_delete: :delete_all
 
     timestamps()
   end
@@ -29,7 +31,8 @@ defmodule Scripture.Article do
   end
 
   def with_comments(query \\ Scripture.Article) do
-    from q in query, preload: [comments: :user]
+    comments_query = from c in Comment, order_by: [desc: c.inserted_at], preload: :user
+    from q in query, preload: [comments: ^comments_query]
   end
 
   def published?(article) do

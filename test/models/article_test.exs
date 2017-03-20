@@ -26,10 +26,13 @@ defmodule Scripture.ArticleTest do
   test "with_comments method" do
     user = persist_fixture(User)
     article = persist_fixture(Article)
-    persist_fixture(Comment, %{user_id: user.id, article_id: article.id})
+    persist_fixture(Comment, %{user_id: user.id, article_id: article.id, message: "First"})
+    persist_fixture(Comment, %{user_id: user.id, article_id: article.id, message: "Second"})
 
     resulting_article = Repo.get!(Article.with_comments, article.id)
     assert nil != List.first(resulting_article.comments).user
+
+    assert ["First", "Second"], Enum.map(resulting_article.comments, fn(c) -> c.message end)
   end
 
   test "deleting an article also deletes its comments" do
