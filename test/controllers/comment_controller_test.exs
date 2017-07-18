@@ -3,6 +3,8 @@ defmodule Scripture.CommentControllerTest do
 
   alias Scripture.{User, Article, Comment}
 
+  import Swoosh.TestAssertions
+
   setup %{conn: conn} do
     article = persist_fixture(Article)
     user = persist_fixture(User)
@@ -10,10 +12,14 @@ defmodule Scripture.CommentControllerTest do
   end
 
   test "creates comment", %{conn: conn, user: user, article: article} do
+    admin = persist_fixture(User, :admin)
+    admin2 = persist_fixture(User, :admin, %{email: "bernd@berndes.com"})
     comment_attrs = %{message: "Hello!", article_id: article.id, user_id: user.id}
     conn = post conn, comment_path(conn, :create), comment: comment_attrs
     assert redirected_to(conn) == article_path(conn, :show, article)
     assert Repo.get_by(Comment, comment_attrs)
+    assert_email_sent to: {Scripture.UserView.full_name(admin), admin.email}
+    assert_email_sent to: {Scripture.UserView.full_name(admin2), admin2.email}
   end
 
   test "deletes comment", %{conn: conn, user: user, article: article} do

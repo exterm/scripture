@@ -6,9 +6,9 @@ defmodule Scripture.Acceptance.CommentTest do
   setup %{session: session} do
     user = persist_fixture(User)
     article = persist_fixture(Article, %{content: "### Headline\n*emphasis*"})
-    
-    other_user = persist_fixture(User, %{email: "other@example.com"})
-    persist_fixture(Comment, %{user_id: other_user.id, article_id: article.id})
+
+    article_author = persist_fixture(User, %{email: "other@example.com"})
+    persist_fixture(Comment, %{user_id: article_author.id, article_id: article.id})
 
     {:ok, session: log_in_as(session, user), user: user, article: article}
   end
@@ -17,7 +17,7 @@ defmodule Scripture.Acceptance.CommentTest do
     visit(session, "/articles/#{article.id}")
 
     comment_message = "Super Artikel!"
-    
+
     fill_in(session, "comment_message", with: comment_message)
     click_on(session, "Kommentar speichern")
 
@@ -25,7 +25,7 @@ defmodule Scripture.Acceptance.CommentTest do
       session
       |> all(".alert-info")
       |> List.first
-    
+
     assert_text(alert, "Kommentar gespeichert.")
 
     comments_section =
@@ -41,7 +41,7 @@ defmodule Scripture.Acceptance.CommentTest do
     persist_fixture(Comment, %{user_id: user.id, article_id: article.id, message: comment_message})
 
     visit(session, "/articles/#{article.id}")
-    
+
     comment_headers =
       session
       |> find("#comments-section")

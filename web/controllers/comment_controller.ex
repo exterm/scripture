@@ -1,16 +1,18 @@
 defmodule Scripture.CommentController do
   use Scripture.Web, :controller
 
-  alias Scripture.Comment
+  alias Scripture.{Comment, User, Article, CommentEmail, Mailer}
 
   def create(conn, %{"comment" => comment_params}) do
-    comment_params_with_user = Map.put(comment_params, "user_id", conn.assigns[:current_user].id)
+    user_id = conn.assigns[:current_user].id
+    comment_params_with_user = Map.put(comment_params, "user_id", user_id)
     changeset = Comment.changeset(%Comment{}, comment_params_with_user)
 
     article_id = comment_params["article_id"]
 
     case Repo.insert(changeset) do
-      {:ok, _comment} ->
+      {:ok, comment} ->
+        send_admin_notifications(user_id, article_id, comment)
         conn
         |> put_flash(:info, "Kommentar gespeichert.")
         |> redirect(to: article_path(conn, :show, article_id))
@@ -39,5 +41,14 @@ defmodule Scripture.CommentController do
       conn
       |> redirect(to: article_path(conn, :show, comment.article_id))
     end
+  end
+
+  defp send_admin_notifications(author_id, article_id, comment) do
+    author = Repo.get(User, author_id)
+    article = Repo.get(Article, article_id)
+    admins = Repo.all(User.admins)
+    Enum.each(admins, fn(admin) ->
+      CommentEmail.notify_admin_new_comment(admin, author, article, comment) |> Mailer.deliver
+    end)
   end
 end

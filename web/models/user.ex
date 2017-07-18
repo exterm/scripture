@@ -40,6 +40,12 @@ defmodule Scripture.User do
     |> general_validations
   end
 
+  # https://blog.drewolson.org/composable-queries-ecto/
+  def admins(query \\ Scripture.User) do
+    from u in query,
+      where: u.role == "admin"
+  end
+
   @doc """
   Generates a new login token
   """
