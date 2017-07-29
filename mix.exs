@@ -44,6 +44,7 @@ defmodule Scripture.Mixfile do
      {:phoenix_swoosh, "~> 0.1"}, # emails - restriction as per docs
      {:earmark, "> 0.0.0"}, # markdown support
      {:calendar, "~> 0.17"}, # fully featured dates and times
+     {:hackney, "1.8.2"}, # just needed to include and restrict hackney for erlang 20 compat
     ]
   end
 
