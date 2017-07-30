@@ -10,7 +10,7 @@ defmodule Scripture.Acceptance.LoginTest do
       |> find(Query.css("body"))
 
     # no redirect
-    assert current_path(body) == "/"
+    assert current_path(session) == "/"
 
     flash_content =
       session
@@ -30,7 +30,7 @@ defmodule Scripture.Acceptance.LoginTest do
       |> find(Query.css("body"))
 
     # no redirect
-    assert current_path(body) == "/"
+    assert current_path(session) == "/"
 
     assert_text(body, "Oh, wie schön ist")
   end

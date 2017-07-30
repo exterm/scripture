@@ -13,7 +13,7 @@ defmodule Scripture.AcceptanceHelper do
       |> visit("/?login_token=#{user.login_token}")
       |> find(Query.css("body"))
 
-    assert current_path(body) == "/"
+    assert current_path(session) == "/"
     assert_text(body, user.first_name <> " " <> user.last_name)
 
     session
