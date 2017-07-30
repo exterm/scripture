@@ -28,7 +28,7 @@ defmodule Scripture.CommentControllerTest do
     admin_author = persist_fixture(User, :admin)
     comment_attrs = %{message: "Hello!", article_id: article.id, user_id: admin_author.id}
 
-    conn = post conn, comment_path(conn, :create), comment: comment_attrs
+    post conn, comment_path(conn, :create), comment: comment_attrs
 
     assert_email_not_sent to: {Scripture.UserView.full_name(admin_author), admin_author.email}
   end
