@@ -38,7 +38,7 @@ defmodule Scripture.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:rollbax, "~> 0.7"},
-     {:wallaby, "~> 0.15.0", only: :test}, # we're currently not compatible with 0.16
+     {:wallaby, "~> 0.17", only: :test},
      {:edeliver, "~> 1.4.0"},
      {:distillery, ">= 0.8.0", warn_missing: false}, # as per edeliver docs
      {:phoenix_swoosh, "~> 0.1"}, # emails - restriction as per docs

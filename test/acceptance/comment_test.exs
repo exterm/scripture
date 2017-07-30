@@ -18,19 +18,19 @@ defmodule Scripture.Acceptance.CommentTest do
 
     comment_message = "Super Artikel!"
 
-    fill_in(session, "comment_message", with: comment_message)
-    click_on(session, "Kommentar speichern")
+    fill_in(session, Query.text_field("comment_message"), with: comment_message)
+    click(session, Query.button("Kommentar speichern"))
 
     alert =
       session
-      |> all(".alert-info")
+      |> all(Query.css(".alert-info"))
       |> List.first
 
     assert_text(alert, "Kommentar gespeichert.")
 
     comments_section =
       session
-      |> all("#comments-section")
+      |> all(Query.css("#comments-section"))
       |> List.first
 
     assert_text(comments_section, comment_message)
@@ -44,15 +44,15 @@ defmodule Scripture.Acceptance.CommentTest do
 
     comment_headers =
       session
-      |> find("#comments-section")
-      |> all(".comment-header")
+      |> find(Query.css("#comments-section"))
+      |> all(Query.css(".comment-header"))
 
     assert 2 == length(comment_headers)
 
     delete_links =
       session
-      |> find("#comments-section")
-      |> all("a.delete")
+      |> find(Query.css("#comments-section"))
+      |> all(Query.css("a.delete"))
 
     # only one delete link means I can't delete other user's comments
     assert 1 == length(delete_links)
