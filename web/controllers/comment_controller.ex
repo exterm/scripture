@@ -48,7 +48,9 @@ defmodule Scripture.CommentController do
     article = Repo.get(Article, article_id)
     admins = Repo.all(User.admins)
     Enum.each(admins, fn(admin) ->
-      CommentEmail.notify_admin_new_comment(admin, author, article, comment) |> Mailer.deliver
+      unless admin == author do
+        CommentEmail.notify_admin_new_comment(admin, author, article, comment) |> Mailer.deliver
+      end
     end)
   end
 end
