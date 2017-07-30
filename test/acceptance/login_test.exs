@@ -3,7 +3,7 @@ defmodule Scripture.Acceptance.LoginTest do
 
   alias Scripture.User
 
-  test "login flow part 1: redirect", %{session: session} do
+  test "login flow part 1: prompt", %{session: session} do
     body =
       session
       |> visit("/")

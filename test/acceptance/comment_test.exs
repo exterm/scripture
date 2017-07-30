@@ -42,19 +42,38 @@ defmodule Scripture.Acceptance.CommentTest do
 
     visit(session, "/articles/#{article.id}")
 
-    comment_headers =
-      session
-      |> find(Query.css("#comments-section"))
-      |> all(Query.css(".comment-header"))
-
-    assert 2 == length(comment_headers)
-
-    delete_links =
-      session
-      |> find(Query.css("#comments-section"))
-      |> all(Query.css("a.delete"))
+    assert_has session, Query.css("#comments-section .comment-header", count: 2)
 
     # only one delete link means I can't delete other user's comments
-    assert 1 == length(delete_links)
+    assert_has session, Query.css("#comments-section a.delete", count: 1)
+  end
+
+  test "delete comment", %{session: session, article: article, user: user} do
+    comment_message = "Super Artikel!"
+    persist_fixture(Comment, %{user_id: user.id, article_id: article.id, message: comment_message})
+
+    visit(session, "/articles/#{article.id}")
+
+    comment_count = Scripture.Repo.aggregate(from(c in Comment, where: c.article_id == ^article.id), :count, :id)
+
+    assert 2 == comment_count
+
+    accept_confirm(session, fn(s) ->
+      click(s, Query.css("a.delete"))
+    end)
+
+    alert_query = Query.css(".alert-info")
+
+    alert =
+      session
+      |> all(alert_query)
+      |> List.first
+
+    assert_has session, alert_query
+    assert_text(alert, "Kommentar gelöscht.")
+
+    comment_count = Scripture.Repo.aggregate(from(c in Comment, where: c.article_id == ^article.id), :count, :id)
+
+    assert 1 == comment_count
   end
 end
