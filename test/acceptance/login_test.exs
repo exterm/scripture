@@ -7,14 +7,14 @@ defmodule Scripture.Acceptance.LoginTest do
     body =
       session
       |> visit("/")
-      |> find("body")
+      |> find(Query.css("body"))
 
     # no redirect
     assert current_path(body) == "/"
 
     flash_content =
       session
-      |> all("p.alert.alert-info")
+      |> all(Query.css("p.alert.alert-info"))
       |> List.first
 
     assert_text(flash_content, "logge dich ein")
@@ -27,7 +27,7 @@ defmodule Scripture.Acceptance.LoginTest do
     body =
       session
       |> visit(Scripture.EmailView.login_link(user.login_token, "/"))
-      |> find("body")
+      |> find(Query.css("body"))
 
     # no redirect
     assert current_path(body) == "/"

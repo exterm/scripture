@@ -13,16 +13,16 @@ defmodule Scripture.Acceptance.Admin.ArticlesTest do
 
     session
     |> visit("/admin/articles")
-    |> click_link("New article")
+    |> click(Query.link("New article"))
 
     session
-    |> fill_in("Title", with: article_title)
-    |> fill_in("Content", with: "The Dark Knight Returns")
-    |> click_on("Submit")
+    |> fill_in(Query.text_field("Title"), with: article_title)
+    |> fill_in(Query.text_field("Content"), with: "The Dark Knight Returns")
+    |> click(Query.button("Submit"))
 
     first_title =
       session
-      |> all("td.article-title")
+      |> all(Query.css("td.article-title"))
       |> List.first
 
     assert_text(first_title, article_title)
@@ -37,8 +37,8 @@ defmodule Scripture.Acceptance.Admin.ArticlesTest do
     titles =
       session
       |> visit("/admin/articles")
-      |> all("td.article-title")
-      |> Enum.map(&text/1)
+      |> all(Query.css("td.article-title"))
+      |> Enum.map(&Element.text/1)
 
     expected = ["Another unfinished article", "Unfinished article", "Third article", "First article"]
 

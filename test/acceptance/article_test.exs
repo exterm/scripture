@@ -16,14 +16,14 @@ defmodule Scripture.Acceptance.ArticleTest do
 
     h3 =
       session
-      |> all("article h3")
+      |> all(Query.css("article h3"))
       |> List.first
 
     assert_text(h3, "Headline")
 
     emphasis =
       session
-      |> all("article em")
+      |> all(Query.css("article em"))
       |> List.first
 
     assert_text(emphasis, "emphasis")
