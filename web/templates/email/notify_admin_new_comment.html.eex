@@ -1,0 +1,5 @@
+<div>
+  <span><b><%= @user.first_name %></b> hat einen neuen Kommentar an <i><%= link @article.title, to: article_url(Scripture.Endpoint, :show, @article) %></i> hinterlassen:</span>
+  <br/>
+  <blockquote><%= @comment.message %></blockquote>
+</div>
