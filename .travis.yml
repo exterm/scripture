@@ -20,4 +20,5 @@ before_install:
 before_script:
   - npm install
   - node node_modules/brunch/bin/brunch build
+dist: trusty
 sudo: false
