@@ -3,5 +3,10 @@
 
 Experimental blogging software with user accounts for readers
 
-* *not even MVP yet*
-* *has no features at all*
+## Features
+
+- Markdown for post formatting
+- passwordless login for pre-registered users
+- embed pictures from dropbox
+- notify admins when comment is added
+- draft and preview blog posts
