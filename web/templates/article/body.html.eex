@@ -1,1 +1,0 @@
-<%= {:safe, render_markdown @article.content} %>

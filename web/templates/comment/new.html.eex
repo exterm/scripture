@@ -1,3 +1,0 @@
-<%= render "form.html", changeset: @changeset,
-                        action: comment_path(@conn, :create),
-                        article_id: @article_id %>

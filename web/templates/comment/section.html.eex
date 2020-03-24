@@ -1,9 +1,0 @@
-<section id="comments-section">
-  <h2 id="comments-headline">Kommentare</h1>
-  <%= for comment <- Enum.reverse(@article.comments) do %>
-    <article>
-      <%= render("one.html", conn: @conn, comment: comment) %>
-    </article>
-  <% end %>
-  <%= render("new.html", conn: @conn, article_id: @article.id, changeset: @comment_changeset) %>
-</section>
