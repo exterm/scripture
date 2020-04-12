@@ -3,10 +3,12 @@ otp_release:
   - 22.3
 elixir:
   - 1.10.2
+services:
+  - postgresql
+script:
+  - mix dialyzer
+  - mix test
 cache:
   directories:
     - "deps"
     - "_build"
-script:
-  - mix dialyzer
-  - mix test
