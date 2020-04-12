@@ -14,4 +14,10 @@ defmodule ScriptureWeb.Router do
 
     get "/", PageController, :index
   end
+
+  scope "/admin", ScriptureWeb.Admin, as: :admin do
+    pipe_through :browser
+
+    resources "/users", UserController
+  end
 end
