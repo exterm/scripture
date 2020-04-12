@@ -1,5 +1,5 @@
 # scripture
-[![Build Status](https://travis-ci.org/exterm/scripture.svg?branch=master)](https://travis-ci.org/exterm/scripture)
+[![Build Status](https://travis-ci.com/exterm/scripture.svg?branch=master)](https://travis-ci.com/exterm/scripture)
 
 Experimental blogging software with user accounts for readers
 
