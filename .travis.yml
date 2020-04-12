@@ -9,3 +9,6 @@ cache:
     - "_build"
 dist: trusty
 sudo: false
+script:
+  - mix dialyzer
+  - mix test
