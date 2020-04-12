@@ -7,8 +7,6 @@ cache:
   directories:
     - "deps"
     - "_build"
-dist: trusty
-sudo: false
 script:
   - mix dialyzer
   - mix test
