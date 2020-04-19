@@ -1,49 +1,53 @@
-defmodule Scripture.Mixfile do
+defmodule Scripture.MixProject do
   use Mix.Project
 
   def project do
-    [app: :scripture,
-     version: "1.0.19",
-     elixir: "~> 1.2",
-     elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix, :gettext] ++ Mix.compilers,
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     aliases: aliases(),
-     deps: deps()]
+    [
+      app: :scripture,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
+      deps: deps(),
+      dialyzer: [
+        plt_add_deps: :app_tree,
+        warnings: [ "-Werror_handling", "-Wunmatched_returns" ]
+      ]
+    ]
   end
 
   # Configuration for the OTP application.
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {Scripture, []},
-     extra_applications: [:logger]]
+    [
+      mod: {Scripture.Application, []},
+      extra_applications: [:logger, :runtime_tools]
+    ]
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.1"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.9.0"}, # v2.10.0 and up don't load the html javascript, breaking delete links
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"},
-     {:rollbax, "~> 0.7"},
-     {:wallaby, "~> 0.17", only: :test},
-     {:edeliver, "~> 1.4.0"},
-     {:distillery, ">= 0.8.0", warn_missing: false}, # as per edeliver docs
-     {:phoenix_swoosh, "~> 0.1"}, # emails - restriction as per docs
-     {:earmark, "> 0.0.0"}, # markdown support
-     {:calendar, "~> 0.17"}, # fully featured dates and times
+    [
+      {:phoenix, "~> 1.4.16"},
+      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix_ecto, "~> 4.0"},
+      {:ecto_sql, "~> 3.1"},
+      {:postgrex, ">= 0.0.0"},
+      {:phoenix_html, "~> 2.11"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:gettext, "~> 0.11"},
+      {:jason, "~> 1.0"},
+      {:plug_cowboy, "~> 2.0"},
+      {:dialyxir, "~> 1.0.0", only: [:dev], runtime: false}
     ]
   end
 
@@ -54,8 +58,10 @@ defmodule Scripture.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+    [
+      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+    ]
   end
 end

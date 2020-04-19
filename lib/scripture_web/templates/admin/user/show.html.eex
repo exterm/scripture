@@ -1,0 +1,27 @@
+<h1>Show User</h1>
+
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= full_name(@user) %>
+  </li>
+  <li>
+    <strong>E-Mail Address:</strong>
+    <%= @user.email %>
+  </li>
+  <li>
+    <strong>Role:</strong>
+    <%= @user.role %>
+  </li>
+  <li>
+    <strong>Group:</strong>
+    <%= @user.group %>
+  </li>
+</ul>
+
+<footer>
+  <ul>
+    <li><%= link "Edit", to: Routes.admin_user_path(@conn, :edit, @user) %></li>
+    <li><%= link "Back", to: Routes.admin_user_path(@conn, :index) %></li>
+  </ul>
+</footer>

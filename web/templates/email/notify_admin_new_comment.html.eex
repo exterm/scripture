@@ -1,8 +1,0 @@
-<div>
-  <span>Am Artikel <i><%= link @article.title, to: article_url(Scripture.Endpoint, :show, @article) %></i>:</span>
-  <br/>
-  <blockquote>
-    <header><b><%= full_name(@user) %></b> - <%= formatted_datetime(@comment.inserted_at) %></header>
-    <%= @comment.message %>
-  </blockquote>
-</div>

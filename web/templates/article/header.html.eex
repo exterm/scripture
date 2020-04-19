@@ -1,3 +1,0 @@
-<header>
-  <h1 id="main-headline"><%= @article.title %></h1>
-</header>

@@ -1,0 +1,32 @@
+<h1>Users Admin</h1>
+
+<span><%= link "New User", to: Routes.admin_user_path(@conn, :new) %></span>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>E-Mail Address</th>
+      <th>Role</th>
+      <th>Group</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= full_name(user) %></td>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <td><%= user.group %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.admin_user_path(@conn, :show, user) %></span>
+        <span><%= link "Edit", to: Routes.admin_user_path(@conn, :edit, user) %></span>
+        <span><%= link "Delete", to: Routes.admin_user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

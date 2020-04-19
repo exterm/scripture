@@ -1,9 +1,0 @@
-<header class="comment-header">
-  <span class="author"><%= full_name(@comment.user) %></span><span class="timestamp"> • <%= formatted_datetime(@comment.inserted_at) %></span>
-</header>
-<p><%= @comment.message %></p>
-<footer>
-  <%= if @conn.assigns[:current_user] == @comment.user do %>
-    <%= link "Löschen", to: comment_path(@conn, :delete, @comment), method: :delete, class: "delete", data: [confirm: "Den Kommentar wirklich löschen?"] %>
-  <% end %>
-</footer>
