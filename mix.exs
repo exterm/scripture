@@ -11,7 +11,10 @@ defmodule Scripture.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      dialyzer: [plt_add_deps: :app_tree]
+      dialyzer: [
+        plt_add_deps: :app_tree,
+        warnings: [ "-Werror_handling", "-Wunmatched_returns" ]
+      ]
     ]
   end
 
