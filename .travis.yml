@@ -2,7 +2,7 @@ language: elixir
 otp_release:
   - 21.3.8.1
 elixir:
-  - 1.6.5-otp-21
+  - 1.6.5
 cache:
   directories:
     - "deps"
